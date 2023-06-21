@@ -2,85 +2,102 @@ package com.example.foundit;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Header extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage primaryStage) {
+        // Creating a BorderPane as the root layout
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 800, 600);
 
-        // Create the menu bar
-        MenuBar menuBar = new MenuBar();
+        // Creating the header section
+        HBox header = createHeader();
+        root.setTop(header);
 
-        // Create the sections in the menu
-        Menu aboutMenu = new Menu("About");
-        Menu contactMenu = new Menu("Contact");
-        Menu teamMenu = new Menu("Team Members");
-        Menu contributionsMenu = new Menu("Contributions");
-
-        // Create menu items for each section
-        MenuItem aboutItem = new MenuItem("About");
-        MenuItem contactItem = new MenuItem("Contact");
-        MenuItem teamItem = new MenuItem("Team Members");
-        MenuItem contributionsItem = new MenuItem("Contributions");
-
-        // Event handlers for menu item clicks
-        aboutItem.setOnAction(event -> redirectToAbout());
-        contactItem.setOnAction(event -> redirectToContact());
-        teamItem.setOnAction(event -> redirectToTeamMembers());
-        contributionsItem.setOnAction(event -> redirectToContributions());
-
-        // Add menu items to the respective menus
-        aboutMenu.getItems().add(aboutItem);
-        contactMenu.getItems().add(contactItem);
-        teamMenu.getItems().add(teamItem);
-        contributionsMenu.getItems().add(contributionsItem);
-
-        // Add menus to the menu bar
-        menuBar.getMenus().addAll(aboutMenu, contactMenu, teamMenu, contributionsMenu);
-
-        // Set the menu bar as the top section of the layout
-        root.setTop(menuBar);
-
-        // Placeholder content
-        VBox content = new VBox();
-        content.setPadding(new Insets(10));
-        content.getChildren().add(new Label("Content goes here"));
-        root.setCenter(content);
-
-        stage.setTitle("Header Example");
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setTitle("Reusable Header Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
-    // Method to handle redirect to About class
-    private void redirectToAbout() {
-        System.out.println("Redirecting to About");
-        // Add your logic to open the About class or perform the desired action
+    private HBox createHeader() {
+        HBox header = new HBox();
+        header.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        header.setPadding(new Insets(10));
+        header.setAlignment(Pos.CENTER);
+
+        // Creating a HBox for logo and title
+        HBox logoBox = new HBox(5);
+        logoBox.setAlignment(Pos.CENTER_LEFT);
+
+        // Adding the logo to the header
+        ImageView logoImage = new ImageView(new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg"));
+        logoImage.setFitHeight(40);
+        logoImage.setPreserveRatio(true);
+        logoBox.getChildren().add(logoImage);
+
+        // Adding the title to the header
+        Text title = new Text("Lost & Found App");
+        title.setFont(Font.font("Arial", 18));
+        title.setFill(Color.WHITE);
+        logoBox.getChildren().add(title);
+
+        // Adding the logo and title HBox to the header
+        header.getChildren().add(logoBox);
+
+        // Creating a HBox for search field and buttons
+        HBox searchBox = new HBox(5);
+        searchBox.setAlignment(Pos.CENTER_RIGHT);
+
+        // Adding the search field to the header
+        TextField searchField = new TextField();
+        searchField.setPromptText("Search...");
+        searchBox.getChildren().add(searchField);
+
+        // Adding the search button to the header
+        Button searchButton = new Button("Search");
+        searchButton.getStyleClass().add("header-button");
+        searchButton.setOnAction(event -> {
+            String searchText = searchField.getText();
+            // Perform search logic with the provided search text
+            System.out.println("Performing search for: " + searchText);
+        });
+        searchBox.getChildren().add(searchButton);
+
+        // Adding the contributions section to the header
+        Button contributionsButton = createHeaderButton("Contributions", "Contributions.class");
+        searchBox.getChildren().add(contributionsButton);
+
+        // Adding the contact section to the header
+        Button contactButton = createHeaderButton("Contact", "Contact.class");
+        searchBox.getChildren().add(contactButton);
+
+        // Adding the search box HBox to the header
+        header.getChildren().add(searchBox);
+
+        return header;
     }
 
-    // Method to handle redirect to Contact class
-    private void redirectToContact() {
-        System.out.println("Redirecting to Contact");
-        // Add your logic to open the Contact class or perform the desired action
-    }
-
-    // Method to handle redirect to Team Members class
-    private void redirectToTeamMembers() {
-        System.out.println("Redirecting to Team Members");
-        // Add your logic to open the Team Members class or perform the desired action
-    }
-
-    // Method to handle redirect to Contributions class
-    private void redirectToContributions() {
-        System.out.println("Redirecting to Contributions");
-        // Add your logic to open the Contributions class or perform the desired action
+    private Button createHeaderButton(String buttonText, String targetClass) {
+        Button button = new Button(buttonText);
+        button.getStyleClass().add("header-button");
+        button.setOnAction(event -> {
+            // Handle button click event
+            // Open the target class or perform related actions
+            System.out.println("Opening " + targetClass + "...");
+        });
+        return button;
     }
 
     public static void main(String[] args) {

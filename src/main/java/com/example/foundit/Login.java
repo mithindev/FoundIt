@@ -9,6 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -27,18 +29,36 @@ public class Login extends Application {
 
     @Override
     public void start(Stage stage) {
-        BorderPane root = new BorderPane();
-        Scene scene = new Scene(root, Color.WHITE);
-
         Image icon = new Image(getFileUrl("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg"));
         stage.getIcons().add(icon);
 
+        // Creating a BorderPane
+        BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-color: #f8f8f8;");
+
+        // Creating a scene to stage.
+        Scene scene = new Scene(root);
+
+        // Splitting the Page into two equal parts.
+        SplitPane middle = new SplitPane();
+        middle.setDividerPosition(1, 1);
+
         // Left Pane with Image
-        ImageView leftImageView = new ImageView(getFileUrl("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg"));
-        leftImageView.setFitWidth(700);
+        Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+
+        ImageView leftImageView = new ImageView(image);
         leftImageView.setPreserveRatio(true);
-        leftImageView.setSmooth(true);
-        leftImageView.setCache(true);
+        leftImageView.setFitHeight(400);
+
+        StackPane left = new StackPane(leftImageView);
+
+        VBox right = new VBox(10);
+        right.setAlignment(Pos.CENTER);
+        right.setPadding(new Insets(10));
+
+        Text title = new Text("Sign In");
+        title.setFont(Font.font("Arial", 24));
+        title.setFill(Color.BLACK);
 
         // Right Pane with Login Form
         GridPane rightPane = new GridPane();
@@ -47,8 +67,8 @@ public class Login extends Application {
         rightPane.setVgap(10);
         rightPane.setPadding(new Insets(50));
 
-        Label amritaLogTex = new Label("Amrita ID:");
-        amritaLogTex.setStyle("-fx-font-weight: bold;");
+        Label amritaLogText = new Label("Amrita ID:");
+        amritaLogText.setStyle("-fx-font-weight: bold;");
         Label usernameLabel = new Label("Username:");
         TextField usernameField = new TextField();
         Label passwordLabel = new Label("Password:");
@@ -73,8 +93,7 @@ public class Login extends Application {
             openSignupPage(stage);
         });
 
-        rightPane.setPadding(new Insets(20));
-        rightPane.add(amritaLogTex, 0, 0);
+        rightPane.add(amritaLogText, 0, 0, 2, 1);
         rightPane.add(usernameLabel, 0, 1);
         rightPane.add(usernameField, 1, 1);
         rightPane.add(passwordLabel, 0, 2);
@@ -82,9 +101,10 @@ public class Login extends Application {
         rightPane.add(loginButton, 1, 3);
         rightPane.add(signupButton, 1, 4);
 
-        HBox loginContainer = new HBox(rightPane);
+        VBox loginContainer = new VBox(20, title, rightPane);
         loginContainer.setAlignment(Pos.CENTER);
-        root.setLeft(leftImageView);
+
+        root.setLeft(left);
         root.setCenter(loginContainer);
 
         stage.setTitle("Amrita Integrated Management System");
@@ -172,8 +192,7 @@ public class Login extends Application {
             showSuccessDialog("Signup successful! Please login.");
         });
 
-        signupPane.setPadding(new Insets(20));
-        signupPane.add(signupLabel, 0, 0);
+        signupPane.add(signupLabel, 0, 0, 2, 1);
         signupPane.add(usernameLabel, 0, 1);
         signupPane.add(usernameField, 1, 1);
         signupPane.add(passwordLabel, 0, 2);
@@ -190,17 +209,6 @@ public class Login extends Application {
         signupStage.show();
     }
 
-    private void saveUserCredentials() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE))) {
-            for (Map.Entry<String, String> entry : userCredentials.entrySet()) {
-                writer.write(entry.getKey() + ":" + entry.getValue());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void showErrorDialog(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -215,6 +223,17 @@ public class Login extends Application {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void saveUserCredentials() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE))) {
+            for (Map.Entry<String, String> entry : userCredentials.entrySet()) {
+                writer.write(entry.getKey() + ":" + entry.getValue());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
