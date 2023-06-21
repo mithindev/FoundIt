@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c5ab36ac-b660-4356-8437-051f4c839529" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SNAKE/snake/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SNAKE/snake/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SNAKE/snake/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SNAKE/snake/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../opensource/My-Personal-portfolio" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../opensource/test" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaFXApplication" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2RQ94RnGa4ulICyHoQaR73ceDuo" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nmary/OneDrive/Desktop/FoundIt/src/main/java/com/example/foundit&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.DashboardDemo">
+    <configuration name="Dashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Dashboard" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DashboardDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.DashboardDemo" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Header" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Header" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogIn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.LogIn" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Login" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DashboardDemo" />
+        <item itemvalue="Application.Dashboard" />
+        <item itemvalue="Application.Login" />
+        <item itemvalue="Application.Header" />
+        <item itemvalue="Application.LogIn" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c5ab36ac-b660-4356-8437-051f4c839529" name="Changes" comment="" />
+      <created>1687171251099</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687171251099</updated>
+      <workItem from="1687171252096" duration="4157000" />
+      <workItem from="1687238606477" duration="2438000" />
+      <workItem from="1687256302877" duration="4990000" />
+      <workItem from="1687271197837" duration="595000" />
+      <workItem from="1687279116220" duration="1200000" />
+      <workItem from="1687280341011" duration="5400000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
