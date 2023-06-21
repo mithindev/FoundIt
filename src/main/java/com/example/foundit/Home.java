@@ -2,9 +2,10 @@ package com.example.foundit;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class Home extends Application {
@@ -14,31 +15,38 @@ public class Home extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
-        VBox root = new VBox();
+        HBox root = new HBox();
         root.setSpacing(20);
         root.setPadding(new Insets(20));
+        root.setAlignment(Pos.CENTER);
 
-        Button reportLostItemButton = new Button("Report Lost Item");
+        Button reportLostItemButton = createButton("Report Lost Item");
         reportLostItemButton.setOnAction(event -> {
             showReportLostItem();
         });
 
-        Button submitFoundItemButton = new Button("Submit Found Item");
+        Button submitFoundItemButton = createButton("Submit Found Item");
         submitFoundItemButton.setOnAction(event -> {
             showSubmitFoundItem();
         });
 
-        Button dashboardButton = new Button("Dashboard");
+        Button dashboardButton = createButton("Dashboard");
         dashboardButton.setOnAction(event -> {
             showDashboard();
         });
 
         root.getChildren().addAll(reportLostItemButton, submitFoundItemButton, dashboardButton);
 
-        Scene scene = new Scene(root, 400, 300);
+        Scene scene = new Scene(root, 1000, 700);
         primaryStage.setTitle("Home");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private Button createButton(String text) {
+        Button button = new Button(text);
+        button.setPrefSize(200, 200);
+        return button;
     }
 
     private void showReportLostItem() {
