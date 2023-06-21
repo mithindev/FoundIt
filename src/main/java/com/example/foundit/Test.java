@@ -8,10 +8,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -178,11 +182,20 @@ public class Test extends Application {
     }
 
     private String showImageUploadDialog() {
-        // Implement the image upload dialog functionality here
-        // You can use JavaFX FileChooser or any other library to handle image uploads
-        // Return the selected image path
-        return ""; // Placeholder, replace with actual implementation
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            return selectedFile.getAbsolutePath();
+        } else {
+            return ""; // No image selected
+        }
     }
+
 
     public static void main(String[] args) {
         launch(args);

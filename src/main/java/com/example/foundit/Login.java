@@ -81,7 +81,7 @@ public class Login extends Application {
             String username = usernameField.getText();
             String password = passwordField.getText();
             if (authenticateUser(username, password)) {
-                openNewPage(stage);
+                openHomePage(stage);
             } else {
                 showErrorDialog("Invalid username or password");
             }
@@ -145,10 +145,9 @@ public class Login extends Application {
         return userCredentials.containsKey(username) && userCredentials.get(username).equals(password);
     }
 
-    private void openNewPage(Stage stage) {
-        // Code to open a new page after successful login
-        // Replace with your own implementation
-        System.out.println("Login successful! Opening new page...");
+    private void openHomePage(Stage stage) {
+        Home home = new Home();
+        home.start(stage);
     }
 
     private void openSignupPage(Stage stage) {
