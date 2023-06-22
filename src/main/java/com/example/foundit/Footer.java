@@ -1,94 +1,81 @@
 package com.example.foundit;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Footer extends Application {
 
     @Override
-    public void start(Stage stage) {
-        // Creating a BorderPane
+    public void start(Stage primaryStage) throws MalformedURLException {
+        // Create a footer HBox
+        HBox footer = new HBox();
+        footer.setAlignment(javafx.geometry.Pos.CENTER);
+        footer.setSpacing(10);
+
+        // Add some labels to the footer
+        Text copyrightLabel = new Text("Copyright © 2023 Company Name");
+        Text versionLabel = new Text("Version 1.0");
+        Text designedByLabel = new Text("Designed by Bard");
+        Text poweredByLabel = new Text("Powered by Python");
+        footer.getChildren().addAll(copyrightLabel, versionLabel, designedByLabel, poweredByLabel);
+
+        // Add some padding to the footer
+        footer.setPadding(new javafx.geometry.Insets(10));
+
+        // Add a separator line to the footer
+        Line separator = new Line();
+        separator.setStyle("-fx-stroke: black; -fx-stroke-width: 1px");
+        footer.getChildren().add(separator);
+
+        // Add a link to the footer
+        Text linkLabel = new Text("Visit our website");
+        URL link = new URL("https://www.companyname.com");
+        TextFlow linkFlow = new TextFlow(linkLabel, new Hyperlink(link.toString()));
+        footer.getChildren().add(linkFlow);
+
+        // Add some CSS styles to the footer
+        footer.setStyle("-fx-background-color: #333333; -fx-font-family: sans-serif");
+        copyrightLabel.setStyle("-fx-font-size: 12px; -fx-font-weight: bold");
+        versionLabel.setStyle("-fx-font-size: 10px");
+        designedByLabel.setStyle("-fx-font-size: 10px");
+        poweredByLabel.setStyle("-fx-font-size: 10px");
+        linkFlow.setStyle("-fx-font-size: 10px; -fx-color: #ffffff");
+
+        // Add some icons to the footer
+        Image icon1 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+        Image icon2 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+        Image icon3 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+        ImageView icon1View = new ImageView(icon1);
+        icon1View.setFitWidth(20);
+        icon1View.setFitHeight(20);
+        ImageView icon2View = new ImageView(icon2);
+        icon2View.setFitWidth(20);
+        icon2View.setFitHeight(20);
+        ImageView icon3View = new ImageView(icon3);
+        icon3View.setFitWidth(20);
+        icon3View.setFitHeight(20);
+        footer.getChildren().addAll(icon1View, icon2View, icon3View);
+
+        // Create a BorderPane and add the footer to it
         BorderPane root = new BorderPane();
-        // Creating a scene to stage.
-        Scene scene = new Scene(root, 800, 600);
-
-        // Creating the footer
-        HBox footer = createFooter();
-
-        // Setting the footer at the bottom of the BorderPane
         root.setBottom(footer);
 
-        stage.setTitle("Creative Footer Example");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    private HBox createFooter() {
-        // Creating the HBox for the footer
-        HBox footer = new HBox();
-        footer.setStyle("-fx-background-color: #333333;");
-        footer.setPadding(new Insets(10));
-        footer.setAlignment(Pos.CENTER);
-
-        // Creating the logo image
-        Image logoImage = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-        ImageView logoImageView = new ImageView(logoImage);
-        logoImageView.setFitHeight(30);
-        logoImageView.setPreserveRatio(true);
-
-        // Creating the navigation buttons
-        Button homeButton = createFooterButton("Home", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-        Button aboutButton = createFooterButton("About", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-        Button contactButton = createFooterButton("Contact", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-
-        // Creating the search field
-        TextField searchField = new TextField();
-        searchField.setPromptText("Search");
-        searchField.setPrefWidth(200);
-
-        // Creating the search button
-        Button searchButton = new Button();
-        Image searchIcon = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-        ImageView searchIconView = new ImageView(searchIcon);
-        searchIconView.setFitHeight(20);
-        searchIconView.setPreserveRatio(true);
-        searchButton.setGraphic(searchIconView);
-        searchButton.setOnAction(event -> {
-            String searchQuery = searchField.getText();
-            // Perform search functionality with the query
-            System.out.println("Search: " + searchQuery);
-        });
-
-        // Adding the logo, search field, search button, and navigation buttons to the footer
-        footer.getChildren().addAll(logoImageView, searchField, searchButton, homeButton, aboutButton, contactButton);
-        HBox.setMargin(searchField, new Insets(0, 10, 0, 10));
-
-        return footer;
-    }
-
-    private Button createFooterButton(String text, String iconFileName) {
-        Button button = new Button(text);
-        button.setTextFill(Color.WHITE);
-        Image icon = new Image(iconFileName);
-        ImageView iconView = new ImageView(icon);
-        iconView.setFitHeight(20);
-        iconView.setPreserveRatio(true);
-        button.setGraphic(iconView);
-        button.setOnAction(event -> {
-            // Perform functionality based on the button clicked
-            System.out.println("Clicked: " + text);
-        });
-        return button;
+        // Create a scene and show it
+        Scene scene = new Scene(root, 800, 400);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

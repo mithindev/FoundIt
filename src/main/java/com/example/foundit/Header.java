@@ -4,8 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -26,14 +25,14 @@ public class Header extends Application {
         HBox header = createHeader();
         root.setTop(header);
 
-        primaryStage.setTitle("Reusable Header Example");
+        primaryStage.setTitle("FoundIt: We Search for You!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     private HBox createHeader() {
         HBox header = new HBox();
-        header.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        header.setStyle("-fx-background-color: #303030;");
         header.setPadding(new Insets(10));
         header.setAlignment(Pos.CENTER);
 
@@ -47,17 +46,25 @@ public class Header extends Application {
         logoImage.setPreserveRatio(true);
         logoBox.getChildren().add(logoImage);
 
-        // Adding the title to the header
-        Text title = new Text("Lost & Found App");
-        title.setFont(Font.font("Arial", 18));
-        title.setFill(Color.WHITE);
-        logoBox.getChildren().add(title);
-
         // Adding the logo and title HBox to the header
         header.getChildren().add(logoBox);
 
+        // Creating a HBox for title and remaining sections
+        HBox titleBox = new HBox();
+        titleBox.setAlignment(Pos.CENTER);
+
+        // Adding the title to the header
+        Text title = new Text("FoundIt");
+        title.setFont(Font.font("Arial", 24));
+        title.setFill(Color.WHITE);
+        titleBox.getChildren().add(title);
+
+        // Adding the title box to the header
+        header.getChildren().add(titleBox);
+        HBox.setHgrow(titleBox, Priority.ALWAYS);
+
         // Creating a HBox for search field and buttons
-        HBox searchBox = new HBox(5);
+        HBox searchBox = new HBox(10);
         searchBox.setAlignment(Pos.CENTER_RIGHT);
 
         // Adding the search field to the header
@@ -67,7 +74,7 @@ public class Header extends Application {
 
         // Adding the search button to the header
         Button searchButton = new Button("Search");
-        searchButton.getStyleClass().add("header-button");
+        searchButton.setStyle("-fx-background-color: #8b0000; -fx-text-fill: white;");
         searchButton.setOnAction(event -> {
             String searchText = searchField.getText();
             // Perform search logic with the provided search text
@@ -91,7 +98,7 @@ public class Header extends Application {
 
     private Button createHeaderButton(String buttonText, String targetClass) {
         Button button = new Button(buttonText);
-        button.getStyleClass().add("header-button");
+        button.setStyle("-fx-background-color: #8b0000; -fx-text-fill: white;");
         button.setOnAction(event -> {
             // Handle button click event
             // Open the target class or perform related actions

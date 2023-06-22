@@ -17,7 +17,17 @@
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/About.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/About.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Contributions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Contributions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Footer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Footer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/FoundLostItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/FoundLostItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Try1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
@@ -64,35 +74,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/nmary/OneDrive/Desktop/FoundIt/src/main/java/com/example/foundit&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/nmary/OneDrive/Desktop/FoundIt/src/main/java/com/example/foundit",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ReportLostItem">
-    <configuration name="About" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.About" />
+  <component name="RunManager" selected="Application.Contributions">
+    <configuration name="Contributions" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Contributions" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -117,8 +128,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReportLostItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.ReportLostItem" />
+    <configuration name="Header" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Header" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -130,8 +141,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test2" />
+    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Login" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -143,8 +154,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Try1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Try1" />
+    <configuration name="Notification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Notification" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -158,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ReportLostItem" />
+        <item itemvalue="Application.Contributions" />
+        <item itemvalue="Application.Header" />
+        <item itemvalue="Application.Login" />
         <item itemvalue="Application.FoundLostItem" />
-        <item itemvalue="Application.Try1" />
-        <item itemvalue="Application.About" />
-        <item itemvalue="Application.Test2" />
+        <item itemvalue="Application.Notification" />
       </list>
     </recent_temporary>
   </component>
@@ -182,7 +193,10 @@
       <workItem from="1687280341011" duration="5400000" />
       <workItem from="1687323832055" duration="71000" />
       <workItem from="1687349251000" duration="14902000" />
-      <workItem from="1687416728983" duration="4054000" />
+      <workItem from="1687416728983" duration="4483000" />
+      <workItem from="1687429749325" duration="4210000" />
+      <workItem from="1687442905897" duration="595000" />
+      <workItem from="1687444899995" duration="4861000" />
     </task>
     <servers />
   </component>

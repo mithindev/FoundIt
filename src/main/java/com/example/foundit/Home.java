@@ -20,6 +20,11 @@ public class Home extends Application {
         root.setPadding(new Insets(20));
         root.setAlignment(Pos.CENTER);
 
+        Button myNotificationButton = createButton("My Notifications");
+        myNotificationButton.setOnAction(event -> {
+            showNotification();
+        });
+
         Button reportLostItemButton = createButton("Report Lost Item");
         reportLostItemButton.setOnAction(event -> {
             showReportLostItem();
@@ -35,7 +40,7 @@ public class Home extends Application {
             showDashboard();
         });
 
-        root.getChildren().addAll(reportLostItemButton, submitFoundItemButton, dashboardButton);
+        root.getChildren().addAll(myNotificationButton, reportLostItemButton, submitFoundItemButton, dashboardButton);
 
         Scene scene = new Scene(root, 1000, 700);
         primaryStage.setTitle("Home");
@@ -47,6 +52,11 @@ public class Home extends Application {
         Button button = new Button(text);
         button.setPrefSize(200, 200);
         return button;
+    }
+
+    private void showNotification() {
+        // Replace with your implementation to show the "Report Lost Item" display
+        System.out.println("Showing My myNotification");
     }
 
     private void showReportLostItem() {

@@ -4,6 +4,7 @@ module com.example.foundit {
             
                 requires net.synedra.validatorfx;
                 requires org.kordamp.bootstrapfx.core;
+//    requires javafx.web;
     requires java.sql;
 
     opens com.example.foundit to javafx.fxml;
