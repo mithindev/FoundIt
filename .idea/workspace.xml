@@ -17,8 +17,9 @@
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lost_items.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lost_items.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/About.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/About.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Try1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Try1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
@@ -91,9 +92,9 @@
       <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ReportLostItem">
-    <configuration name="Home" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Home" />
+  <component name="RunManager" selected="Application.About">
+    <configuration name="About" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.About" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -105,8 +106,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Login" />
+    <configuration name="Header" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Header" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -131,8 +132,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test" />
+    <configuration name="Test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test2" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -159,11 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ReportLostItem" />
+        <item itemvalue="Application.About" />
+        <item itemvalue="Application.Test2" />
         <item itemvalue="Application.Try1" />
-        <item itemvalue="Application.Home" />
-        <item itemvalue="Application.Login" />
-        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Header" />
+        <item itemvalue="Application.ReportLostItem" />
       </list>
     </recent_temporary>
   </component>
@@ -183,6 +184,7 @@
       <workItem from="1687280341011" duration="5400000" />
       <workItem from="1687323832055" duration="71000" />
       <workItem from="1687349251000" duration="14902000" />
+      <workItem from="1687416728983" duration="3324000" />
     </task>
     <servers />
   </component>

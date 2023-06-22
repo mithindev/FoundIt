@@ -2,149 +2,138 @@ package com.example.foundit;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Try1 extends Application {
+
+    private static final String FILE_NAME = "lost_item.txt";
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) {
-        VBox root = new VBox(10);
-        root.setPadding(new Insets(20));
+        primaryStage.setTitle("Report Lost Item");
 
-        // Item Name
-        Label itemNameLabel = new Label("Item Name:");
-        TextField itemNameField = new TextField();
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25));
 
-        // Description
-        Label descriptionLabel = new Label("Description:");
-        TextArea descriptionArea = new TextArea();
+        // Apply CSS styles to the grid
+        grid.setStyle("-fx-background-color: #f1f1f1;");
 
-        // Date/Time
-        Label dateTimeLabel = new Label("Date/Time:");
+        // Item Description
+        Label descriptionLabel = new Label("Item Description:");
+        TextField descriptionField = new TextField();
+        grid.add(descriptionLabel, 0, 0);
+        grid.add(descriptionField, 1, 0);
+
+        // Item Category
+        Label categoryLabel = new Label("Item Category:");
+        ComboBox<String> categoryComboBox = new ComboBox<>();
+        categoryComboBox.getItems().addAll("Electronics", "Accessories", "Books", "Clothing");
+        grid.add(categoryLabel, 0, 1);
+        grid.add(categoryComboBox, 1, 1);
+
+        // Date and Time of Loss
+        Label dateTimeLabel = new Label("Date and Time of Loss:");
         DatePicker datePicker = new DatePicker();
         TextField timeField = new TextField();
+        timeField.setPromptText("HH:mm");
+        HBox dateTimeBox = new HBox(10);
+        dateTimeBox.getChildren().addAll(datePicker, timeField);
+        grid.add(dateTimeLabel, 0, 2);
+        grid.add(dateTimeBox, 1, 2);
 
-        // Location
-        Label locationLabel = new Label("Location:");
+        // Location of Loss
+        Label locationLabel = new Label("Location of Loss:");
         TextField locationField = new TextField();
+        grid.add(locationLabel, 0, 3);
+        grid.add(locationField, 1, 3);
 
         // Contact Information
         Label contactLabel = new Label("Contact Information:");
-        TextField contactField = new TextField();
+        TextField fullNameField = new TextField();
+        fullNameField.setPromptText("Full Name");
+        TextField phoneField = new TextField();
+        phoneField.setPromptText("Phone Number");
+        TextField emailField = new TextField();
+        emailField.setPromptText("Email Address");
+        grid.add(contactLabel, 0, 4);
+        grid.add(fullNameField, 1, 4);
+        grid.add(phoneField, 1, 5);
+        grid.add(emailField, 1, 6);
 
-        // Image
-        Label imageLabel = new Label("Image:");
-        Button chooseImageButton = new Button("Choose Image");
-        ImageView selectedImageView = new ImageView();
-        selectedImageView.setFitWidth(200);
-        selectedImageView.setFitHeight(200);
-
-        chooseImageButton.setOnAction(event -> {
-            // Handle image selection logic
-            // Replace with your implementation
-            System.out.println("Choosing image...");
-        });
+        // Additional Details
+        Label additionalDetailsLabel = new Label("Additional Details:");
+        TextArea additionalDetailsArea = new TextArea();
+        additionalDetailsArea.setPrefRowCount(3);
+        grid.add(additionalDetailsLabel, 0, 7);
+        grid.add(additionalDetailsArea, 1, 7);
 
         // Submit Button
         Button submitButton = new Button("Submit");
-        submitButton.setOnAction(event -> {
-            // Retrieve form data and handle submission
-            String itemName = itemNameField.getText();
-            String description = descriptionArea.getText();
-            String dateTime = datePicker.getValue().toString() + " " + timeField.getText();
+        HBox buttonBox = new HBox(10);
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.getChildren().add(submitButton);
+        grid.add(buttonBox, 1, 9);
+        submitButton.setOnAction(e -> {
+            String description = descriptionField.getText();
+            String category = categoryComboBox.getValue();
+            String date = datePicker.getValue().format(DateTimeFormatter.ISO_DATE);
+            String time = timeField.getText();
             String location = locationField.getText();
-            String contactInfo = contactField.getText();
-            // Handle image selection and submission logic
+            String fullName = fullNameField.getText();
+            String phone = phoneField.getText();
+            String email = emailField.getText();
+            String additionalDetails = additionalDetailsArea.getText();
 
-            // Perform data validation and submission
-            if (validateFormData(itemName, description, dateTime, location, contactInfo)) {
-                submitFormData(itemName, description, dateTime, location, contactInfo);
-                clearForm();
-                showSuccessDialog("Item report submitted successfully!");
-            } else {
-                showErrorDialog("Please fill in all required fields.");
-            }
+            String entry = description + ";" + category + ";" + date + ";" + time + ";" +
+                    location + ";" + fullName + ";" + phone + ";" + email + ";" + additionalDetails;
+
+            writeToFile(entry);
+            clearFields();
+            // You can add additional actions here, such as displaying a confirmation message.
         });
 
-        // Apply CSS styling
-        root.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-        root.getStyleClass().add("root");
+        // Apply CSS styles to the form elements
+        descriptionLabel.setStyle("-fx-font-weight: bold;");
+        categoryLabel.setStyle("-fx-font-weight: bold;");
+        dateTimeLabel.setStyle("-fx-font-weight: bold;");
+        locationLabel.setStyle("-fx-font-weight: bold;");
+        contactLabel.setStyle("-fx-font-weight: bold;");
+        additionalDetailsLabel.setStyle("-fx-font-weight: bold;");
 
-        // Add form elements to the root container
-        root.getChildren().addAll(
-                createFieldLayout(itemNameLabel, itemNameField),
-                createFieldLayout(descriptionLabel, descriptionArea),
-                createFieldLayout(dateTimeLabel, createDateTimeLayout(datePicker)),
-                createFieldLayout(locationLabel, locationField),
-                createFieldLayout(contactLabel, contactField),
-                createFieldLayout(imageLabel, createImageLayout(chooseImageButton)),
-                submitButton
-        );
+        submitButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
 
-        Scene scene = new Scene(root, 800, 600);
-        primaryStage.setTitle("Report Lost Item");
+        Scene scene = new Scene(grid, 700, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private VBox createFieldLayout(Label label, Control control) {
-        VBox fieldLayout = new VBox(5);
-        fieldLayout.getChildren().addAll(label, control);
-        return fieldLayout;
+    private void writeToFile(String entry) {
+        try (FileWriter writer = new FileWriter(FILE_NAME, true)) {
+            writer.write(entry + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception as per your application's error handling mechanism
+        }
     }
 
-    private HBox createDateTimeLayout(DatePicker datePicker) {
-        HBox dateTimeLayout = new HBox(5);
-        dateTimeLayout.getChildren().addAll(datePicker);
-        return dateTimeLayout;
-    }
-
-    private HBox createImageLayout(Button chooseImageButton) {
-        HBox imageLayout = new HBox(5);
-        imageLayout.getChildren().addAll(chooseImageButton);
-        return imageLayout;
-    }
-
-    private boolean validateFormData(String itemName, String description, String dateTime, String location, String contactInfo) {
-        // Perform validation logic
-        return !itemName.isEmpty() && !description.isEmpty() && !dateTime.isEmpty()
-                && !location.isEmpty() && !contactInfo.isEmpty();
-    }
-
-    private void submitFormData(String itemName, String description, String dateTime, String location, String contactInfo) {
-        // Replace with your implementation to handle form submission
-        System.out.println("Submitting form data:");
-        System.out.println("Item Name: " + itemName);
-        System.out.println("Description: " + description);
-        System.out.println("Date/Time: " + dateTime);
-        System.out.println("Location: " + location);
-        System.out.println("Contact Information: " + contactInfo);
-    }
-
-    private void clearForm() {
-        // Clear form fields
-        // Replace with your implementation
-        System.out.println("Clearing form fields");
-    }
-
-    private void showSuccessDialog(String message) {
-        // Show success dialog
-        // Replace with your implementation
-        System.out.println("Success: " + message);
-    }
-
-    private void showErrorDialog(String message) {
-        // Show error dialog
-        // Replace with your implementation
-        System.out.println("Error: " + message);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+    private void clearFields() {
+        // Clear all the input fields after submission
+        // You can customize this method to reset individual fields as needed
     }
 }
