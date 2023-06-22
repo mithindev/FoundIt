@@ -22,14 +22,10 @@ public class About extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // Creating a ScrollPane as the root layout
-        ScrollPane root = new ScrollPane();
-        root.setFitToWidth(true);
-
-        // Creating a VBox to hold the content
-        VBox content = new VBox();
-        content.setSpacing(20);
-        content.setPadding(new Insets(20));
+        // Create root layout
+        VBox root = new VBox();
+        root.setSpacing(20);
+        root.setPadding(new Insets(20));
 
         // Create scene
         Scene scene = new Scene(root, 800, 600);
