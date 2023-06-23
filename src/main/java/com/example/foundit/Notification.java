@@ -1,29 +1,31 @@
 package com.example.foundit;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Notification extends Application {
-    private static final int MAX_NOTIFICATIONS = 4;
-    private static final Duration NOTIFICATION_DURATION = Duration.seconds(5);
+    private static final String NOTIFICATION_FILE = "notification.txt";
+    private static final int NOTIFICATION_WIDTH = 300;
+    private static final int NOTIFICATION_HEIGHT = 100;
 
-    private static List<NotificationPane> notifications;
-    private static VBox notificationContainer;
+    private Stage primaryStage;
 
     public static void main(String[] args) {
         launch(args);
@@ -31,164 +33,94 @@ public class Notification extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        notifications = new ArrayList<>();
+        this.primaryStage = primaryStage;
+        primaryStage.setTitle("Notification");
 
-        // Create the notification container
-        notificationContainer = new VBox(10);
-        notificationContainer.setAlignment(Pos.TOP_RIGHT);
-        notificationContainer.setPadding(new Insets(20));
-        notificationContainer.setStyle("-fx-background-color: #f8f8f8;");
+        Label titleLabel = new Label("Notification");
+        titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
 
-        // Create a sample notification
-        createNotification("Success", "We Found a match!", NotificationType.SUCCESS, () -> {
-            // Action performed when the button is clicked
-            System.out.println("Notification action performed!");
+        TextArea contentArea = new TextArea();
+        contentArea.setEditable(false);
+        contentArea.setWrapText(true);
+        contentArea.setPrefWidth(NOTIFICATION_WIDTH);
+        contentArea.setPrefHeight(NOTIFICATION_HEIGHT);
+
+        Button dismissButton = new Button("Dismiss");
+        dismissButton.setStyle("-fx-background-color: #a3113e; -fx-text-fill: white;");
+        dismissButton.setOnAction(event -> primaryStage.hide());
+
+        HBox buttonContainer = new HBox(10, dismissButton);
+        buttonContainer.setAlignment(Pos.CENTER);
+
+        StackPane notificationPane = new StackPane(contentArea);
+        notificationPane.setPadding(new Insets(10));
+        notificationPane.setStyle("-fx-background-color: #ffffff; -fx-border-color: #c0c0c0; -fx-border-width: 1px;");
+        notificationPane.setMaxSize(NOTIFICATION_WIDTH, NOTIFICATION_HEIGHT);
+        notificationPane.setPrefSize(NOTIFICATION_WIDTH, NOTIFICATION_HEIGHT);
+        notificationPane.setOpacity(0);
+
+        BorderPane root = new BorderPane();
+        root.setTop(titleLabel);
+        root.setCenter(notificationPane);
+        root.setBottom(buttonContainer);
+        root.setStyle("-fx-padding: 10px;");
+
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+        // Check for notifications when the application starts
+        Platform.runLater(this::checkNotifications);
+
+        // Check for notifications periodically
+        Duration notificationCheckInterval = Duration.seconds(10);
+        FadeTransition fadeInTransition = createFadeInTransition(notificationPane);
+        fadeInTransition.setOnFinished(event -> {
+            PauseTransition pauseTransition = new PauseTransition(notificationCheckInterval);
+            pauseTransition.setOnFinished(e -> {
+                checkNotifications();
+                if (contentArea.getText().isEmpty()) {
+                    FadeTransition fadeOutTransition = createFadeOutTransition(notificationPane);
+                    fadeOutTransition.setOnFinished(evt -> primaryStage.hide());
+                    fadeOutTransition.play();
+                } else {
+                    fadeInTransition.play();
+                }
+            });
+            pauseTransition.play();
         });
 
-        // Create the left-side image view
-        Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(400); // Adjust the width as desired
-        imageView.setFitHeight(300); // Adjust the height as desired
+        primaryStage.setOnShowing(event -> fadeInTransition.play());
 
-        // Create the right-side pane for the image view and notifications
-        StackPane rightPane = new StackPane(imageView, notificationContainer);
-
-        // Create the split pane and set its orientation and division ratio
-        SplitPane splitPane = new SplitPane();
-        splitPane.setOrientation(javafx.geometry.Orientation.HORIZONTAL);
-        splitPane.setDividerPositions(0.5);
-
-        // Add the image view and right pane to the split pane
-        splitPane.getItems().addAll(imageView, rightPane);
-
-        // Create the scene with the split pane as its root
-        Scene scene = new Scene(splitPane, 800, 600);
-
-        // Add the notification container to the scene
-        StackPane rootPane = new StackPane(splitPane, notificationContainer);
-        Scene scene1 = new Scene(rootPane, 800, 600);
-
-        // Set the stage title and scene, then show the stage
-        primaryStage.setTitle("Notification");
-        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-
-
-    public static void createNotification(String title, String message, NotificationType type, Runnable action) {
-        if (notifications == null) {
-            notifications = new ArrayList<>();
-        }
-
-        if (notificationContainer == null) {
-            notificationContainer = new VBox(10);
-            notificationContainer.setAlignment(Pos.TOP_RIGHT);
-            notificationContainer.setPadding(new Insets(20));
-            notificationContainer.setStyle("-fx-background-color: #f8f8f8;");
-        }
-
-        // Create the notification
-        NotificationPane notification = new NotificationPane(title, message, type, action);
-        notifications.add(notification);
-        notificationContainer.getChildren().add(notification);
-
-        // Apply fade-in animation
-        FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notification);
+    private FadeTransition createFadeInTransition(StackPane notificationPane) {
+        FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notificationPane);
         fadeInTransition.setFromValue(0);
         fadeInTransition.setToValue(1);
-        fadeInTransition.play();
+        return fadeInTransition;
+    }
 
-        // Schedule notification dismissal
-        FadeTransition fadeOutTransition = new FadeTransition(NOTIFICATION_DURATION, notification);
+    private FadeTransition createFadeOutTransition(StackPane notificationPane) {
+        FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), notificationPane);
         fadeOutTransition.setFromValue(1);
         fadeOutTransition.setToValue(0);
-        fadeOutTransition.setOnFinished(event -> {
-            notifications.remove(notification);
-            notificationContainer.getChildren().remove(notification);
-        });
-        fadeOutTransition.play();
+        return fadeOutTransition;
     }
 
-    static class NotificationPane extends VBox {
-        private static final int NOTIFICATION_WIDTH = 300;
-        private static final int NOTIFICATION_HEIGHT = 80;
-        private static final int ICON_SIZE = 24;
-
-        public NotificationPane(String title, String message, NotificationType type, Runnable action) {
-            setPrefSize(NOTIFICATION_WIDTH, NOTIFICATION_HEIGHT);
-            setMaxSize(NOTIFICATION_WIDTH, NOTIFICATION_HEIGHT);
-            setStyle("-fx-background-color: #ffffff; -fx-border-color: #c0c0c0; -fx-border-width: 1px;");
-
-            Label titleLabel = new Label(title);
-            titleLabel.setStyle("-fx-font-weight: bold;");
-            Label messageLabel = new Label(message);
-
-            HBox content = new HBox(10);
-            content.setAlignment(Pos.CENTER_LEFT);
-            content.setPadding(new Insets(10));
-            content.getChildren().addAll(createIcon(type), titleLabel, messageLabel, createActionButton(action));
-
-            getChildren().add(content);
-        }
-
-        private ImageView createIcon(NotificationType type) {
-            ImageView imageView = new ImageView();
-            imageView.setFitWidth(ICON_SIZE);
-            imageView.setFitHeight(ICON_SIZE);
-
-            Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\logo.jpg"); // Replace with your desired icon image path
-
-            switch (type) {
-                case SUCCESS:
-                    imageView.setImage(image);
-                    break;
-                case ERROR:
-                    imageView.setImage(image);
-                    break;
-                case WARNING:
-                    imageView.setImage(image);
-                    break;
-                case INFO:
-                    imageView.setImage(image);
-                    break;
+    private void checkNotifications() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(NOTIFICATION_FILE))) {
+            StringBuilder contentBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                contentBuilder.append(line);
+                contentBuilder.append(System.lineSeparator());
             }
-
-            return imageView;
+            String content = contentBuilder.toString().trim();
+            TextArea contentArea = (TextArea) ((BorderPane) primaryStage.getScene().getRoot()).getCenter();
+            contentArea.setText(content);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        private Button createActionButton(Runnable action) {
-            Button actionButton = new Button("Dismiss");
-            actionButton.setStyle("-fx-background-color: #a3113e; -fx-text-fill: white;");
-            actionButton.setOnAction(event -> {
-                action.run();
-                closeNotification();
-            });
-
-            return actionButton;
-        }
-
-        private void closeNotification() {
-            FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), this);
-            fadeOutTransition.setFromValue(1);
-            fadeOutTransition.setToValue(0);
-            fadeOutTransition.setOnFinished(event -> {
-                Pane parentContainer = (Pane) getParent();
-                parentContainer.getChildren().remove(this);
-            });
-            fadeOutTransition.play();
-        }
-    }
-
-    enum NotificationType {
-        SUCCESS,
-        ERROR,
-        WARNING,
-        INFO
-    }
-
-    public static void display(String title, String message, NotificationType type, Runnable action) {
-        createNotification(title, message, type, action);
     }
 }

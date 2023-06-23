@@ -131,17 +131,19 @@ public class Test1 extends Application {
 
             if (matchFound) {
                 // Push a notification for match found
-                Platform.runLater(() -> {
-                    Notification.display("Match Found", "A match has been found for your lost item!", Notification.NotificationType.SUCCESS, () -> {
-                        // Action performed when the notification is dismissed
-                        System.out.println("Match found notification dismissed!");
-                    });
-                });
-                System.out.println("Match found notification dismissed!");
+//                Platform.runLater(() -> {
+//                    Notification.createNotification("Match Found", "A match has been found for your lost item!", Notification.NotificationType.SUCCESS, () -> {
+//                        // Action performed when the notification is dismissed
+//                        System.out.println("Match found notification dismissed!");
+//                    });
+//                });
+                System.out.println("Match found notification pushed!");
             } else {
                 System.out.println("No match found!");
             }
         });
+
+
 
 
         Scene scene = new Scene(grid, 700, 500);
