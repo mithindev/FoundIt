@@ -24,10 +24,14 @@ public class Contributions extends Application {
         root.setHgap(20);
         root.setVgap(20);
         root.setPadding(new Insets(20));
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 800, 700);
+
+        //String - 1
+
+        String str1 = "CONTRIBUTIONS:\n 1.abcd\n2.abcd";
 
         // Create and add flip cards to the grid pane
-        createFlipCard(root, "Card 1", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg", 0, 0);
+        createFlipCard(root, str1, "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg", 0, 0);
         createFlipCard(root, "Card 2", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg", 1, 0);
         createFlipCard(root, "Card 3", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg", 0, 1);
         createFlipCard(root, "Card 4", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg", 1, 1);
@@ -45,40 +49,50 @@ public class Contributions extends Application {
 
     private StackPane createFlipCard(String title, Image image) {
         StackPane flipCard = new StackPane();
-        flipCard.setPrefSize(image.getWidth(), image.getHeight());
+
+        // Set the maximum width and height for the image to fit within the flip card
+        double maxWidth = 400;
+        double maxHeight = 300;
+
+        ImageView imageView = new ImageView(image);
+        imageView.setPreserveRatio(true);
+        imageView.setFitWidth(maxWidth);
+        imageView.setFitHeight(maxHeight);
+
+        flipCard.setPrefSize(maxWidth, maxHeight);
 
         // Creating the front side of the flip card
-        StackPane front = createFlipCardSide(title, image, Color.CORAL, Color.WHITE);
+        StackPane front = createFlipCardSide(title, imageView, Color.BLACK, Color.WHITE);
         // Creating the back side of the flip card
-        StackPane back = createFlipCardSide("BACK", image, Color.WHITE, Color.CORAL);
+        StackPane back = createFlipCardSide("BACK", imageView, Color.BLACK, Color.WHITE);
 
-        // Initially showing the front side of the flip card
-        flipCard.getChildren().add(front);
+        // Initially showing the back side of the flip card
+        flipCard.getChildren().add(back);
 
         // Flipping the card on hover
         flipCard.setOnMouseEntered(event -> {
-            flipCard.getChildren().setAll(back);
+            flipCard.getChildren().setAll(front);
         });
 
         // Flipping the card back on mouse exit
         flipCard.setOnMouseExited(event -> {
-            flipCard.getChildren().setAll(front);
+            flipCard.getChildren().setAll(back);
         });
 
         return flipCard;
     }
 
-    private StackPane createFlipCardSide(String title, Image image, Color bgColor, Color textColor) {
-        Rectangle cardBg = new Rectangle(image.getWidth(), image.getHeight(), bgColor);
+    private StackPane createFlipCardSide(String title, ImageView imageView, Color bgColor, Color textColor) {
+        Rectangle cardBg = new Rectangle(imageView.getFitWidth(), imageView.getFitHeight(), bgColor);
         Label titleLabel = new Label(title);
         titleLabel.setFont(Font.font("Arial", 18));
         titleLabel.setTextFill(textColor);
         titleLabel.setTextAlignment(TextAlignment.CENTER);
 
         StackPane side = new StackPane();
-        side.getChildren().addAll(cardBg, titleLabel, new ImageView(image));
+        side.getChildren().addAll(cardBg, titleLabel, imageView);
         StackPane.setAlignment(titleLabel, Pos.TOP_CENTER);
-        StackPane.setAlignment(new ImageView(image), Pos.CENTER);
+        StackPane.setAlignment(imageView, Pos.CENTER);
 
         return side;
     }

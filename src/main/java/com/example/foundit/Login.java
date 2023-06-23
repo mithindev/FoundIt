@@ -29,7 +29,7 @@ public class Login extends Application {
 
     @Override
     public void start(Stage stage) {
-        Image icon = new Image(getFileUrl("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg"));
+        Image icon = new Image(getFileUrl("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\logo.jpg"));
         stage.getIcons().add(icon);
 
         // Creating a BorderPane
@@ -38,6 +38,12 @@ public class Login extends Application {
 
         // Creating a scene to stage.
         Scene scene = new Scene(root);
+
+        // Create the header
+        HBox header = HeaderLogin.createHeader();
+
+        // Create the footer
+//        HBox footer = Footer.
 
         // Splitting the Page into two equal parts.
         SplitPane middle = new SplitPane();
@@ -104,6 +110,8 @@ public class Login extends Application {
         VBox loginContainer = new VBox(20, title, rightPane);
         loginContainer.setAlignment(Pos.CENTER);
 
+        // Set the header, middle section, and footer in the border pane
+        root.setTop(header);
         root.setLeft(left);
         root.setCenter(loginContainer);
 

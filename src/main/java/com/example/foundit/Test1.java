@@ -1,6 +1,7 @@
 package com.example.foundit;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,14 +9,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-public class ReportLostItem extends Application {
+public class Test1 extends Application {
 
-    private static final String FILE_NAME = "lost_item.txt";
+    private static final String LOST_ITEMS_FILE = "lost_item.txt"; // File path for lost items
+    private static final String FOUND_ITEMS_FILE = "found_item.txt"; // File path for found items
 
     public static void main(String[] args) {
         launch(args);
@@ -47,8 +49,8 @@ public class ReportLostItem extends Application {
         grid.add(categoryLabel, 0, 1);
         grid.add(categoryComboBox, 1, 1);
 
-        // Date and Time of Loss
-        Label dateTimeLabel = new Label("Date and Time of Loss:");
+        // Date and Time of Losing
+        Label dateTimeLabel = new Label("Date and Time of Losing:");
         DatePicker datePicker = new DatePicker();
         TextField timeField = new TextField();
         timeField.setPromptText("HH:mm");
@@ -57,8 +59,8 @@ public class ReportLostItem extends Application {
         grid.add(dateTimeLabel, 0, 2);
         grid.add(dateTimeBox, 1, 2);
 
-        // Location of Loss
-        Label locationLabel = new Label("Location of Loss:");
+        // Location of Losing
+        Label locationLabel = new Label("Location of Losing:");
         TextField locationField = new TextField();
         grid.add(locationLabel, 0, 3);
         grid.add(locationField, 1, 3);
@@ -85,16 +87,14 @@ public class ReportLostItem extends Application {
 
         // Submit Button
         Button submitButton = new Button("Submit");
-        HBox buttonBox = new HBox(10);
-        buttonBox.setAlignment(Pos.CENTER);
-        buttonBox.getChildren().add(submitButton);
-        grid.add(buttonBox, 1, 9);
+        grid.add(submitButton, 1, 8);
 
-        //Submit Button Action
+        // Submit Button Action
         submitButton.setOnAction(e -> {
+            // Read the entered data
             String description = descriptionField.getText();
             String category = categoryComboBox.getValue();
-            String date = datePicker.getValue().format(DateTimeFormatter.ISO_DATE);
+            String date = datePicker.getValue().toString();
             String time = timeField.getText();
             String location = locationField.getText();
             String fullName = fullNameField.getText();
@@ -102,40 +102,50 @@ public class ReportLostItem extends Application {
             String email = emailField.getText();
             String additionalDetails = additionalDetailsArea.getText();
 
-            String entry = description + ";" + category + ";" + date + ";" + time + ";" +
-                    location + ";" + fullName + ";" + phone + ";" + email + ";" + additionalDetails;
+            // Save the entered details to the lost items file
+            try (FileWriter writer = new FileWriter(LOST_ITEMS_FILE, true)) {
+                writer.write(description + "," + category + "," + date + "," + time + "," + location + "," +
+                        fullName + "," + phone + "," + email + "," + additionalDetails);
+                writer.write(System.lineSeparator());
+                writer.flush();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
 
-            writeToFile(entry);
-            clearFields();
-            // You can add additional actions here, such as displaying a confirmation message.
+            System.out.println("Details saved successfully!");
+
+            // Check for a match in the found items file
+            boolean matchFound = false;
+            try (BufferedReader reader = new BufferedReader(new FileReader(FOUND_ITEMS_FILE))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] itemDetails = line.split(",");
+                    if (itemDetails[0].equalsIgnoreCase(description) && itemDetails[1].equalsIgnoreCase(category)) {
+                        matchFound = true;
+                        break;
+                    }
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            if (matchFound) {
+                // Push a notification for match found
+                Platform.runLater(() -> {
+                    Notification.display("Match Found", "A match has been found for your lost item!", Notification.NotificationType.SUCCESS, () -> {
+                        // Action performed when the notification is dismissed
+                        System.out.println("Match found notification dismissed!");
+                    });
+                });
+                System.out.println("Match found notification dismissed!");
+            } else {
+                System.out.println("No match found!");
+            }
         });
 
-        // Apply CSS styles to the form elements
-        descriptionLabel.setStyle("-fx-font-weight: bold;");
-        categoryLabel.setStyle("-fx-font-weight: bold;");
-        dateTimeLabel.setStyle("-fx-font-weight: bold;");
-        locationLabel.setStyle("-fx-font-weight: bold;");
-        contactLabel.setStyle("-fx-font-weight: bold;");
-        additionalDetailsLabel.setStyle("-fx-font-weight: bold;");
-
-        submitButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
 
         Scene scene = new Scene(grid, 700, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    private void writeToFile(String entry) {
-        try (FileWriter writer = new FileWriter(FILE_NAME, true)) {
-            writer.write(entry + "\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle the exception as per your application's error handling mechanism
-        }
-    }
-
-    private void clearFields() {
-        // Clear all the input fields after submission
-        // You can customize this method to reset individual fields as needed
     }
 }

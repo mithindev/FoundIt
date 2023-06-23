@@ -18,8 +18,8 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Notification extends Application {
-    private static final int MAX_NOTIFICATIONS = 4;
+public class Test2 extends Application {
+    public static final int MAX_NOTIFICATIONS = 4;
     private static final Duration NOTIFICATION_DURATION = Duration.seconds(5);
 
     private static List<NotificationPane> notifications;
@@ -65,28 +65,17 @@ public class Notification extends Application {
         // Create the scene with the split pane as its root
         Scene scene = new Scene(splitPane, 800, 600);
 
-        // Add the notification container to the scene
-        StackPane rootPane = new StackPane(splitPane, notificationContainer);
-        Scene scene1 = new Scene(rootPane, 800, 600);
-
         // Set the stage title and scene, then show the stage
         primaryStage.setTitle("Notification");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-
-
     public static void createNotification(String title, String message, NotificationType type, Runnable action) {
-        if (notifications == null) {
-            notifications = new ArrayList<>();
-        }
-
-        if (notificationContainer == null) {
-            notificationContainer = new VBox(10);
-            notificationContainer.setAlignment(Pos.TOP_RIGHT);
-            notificationContainer.setPadding(new Insets(20));
-            notificationContainer.setStyle("-fx-background-color: #f8f8f8;");
+        if (notifications.size() >= MAX_NOTIFICATIONS) {
+            // Remove the oldest notification if the maximum limit is reached
+            NotificationPane oldestNotification = notifications.remove(0);
+            notificationContainer.getChildren().remove(oldestNotification);
         }
 
         // Create the notification
@@ -101,14 +90,14 @@ public class Notification extends Application {
         fadeInTransition.play();
 
         // Schedule notification dismissal
-        FadeTransition fadeOutTransition = new FadeTransition(NOTIFICATION_DURATION, notification);
-        fadeOutTransition.setFromValue(1);
-        fadeOutTransition.setToValue(0);
-        fadeOutTransition.setOnFinished(event -> {
-            notifications.remove(notification);
-            notificationContainer.getChildren().remove(notification);
-        });
-        fadeOutTransition.play();
+//        FadeTransition fadeOutTransition = new FadeTransition(NOTIFICATION_DURATION, notification);
+//        fadeOutTransition.setFromValue(1);
+//        fadeOutTransition.setToValue(0);
+//        fadeOutTransition.setOnFinished(event -> {
+//            notifications.remove(notification);
+//            notificationContainer.getChildren().remove(notification);
+//        });
+//        fadeOutTransition.playFromStart();
     }
 
     static class NotificationPane extends VBox {
@@ -138,20 +127,20 @@ public class Notification extends Application {
             imageView.setFitWidth(ICON_SIZE);
             imageView.setFitHeight(ICON_SIZE);
 
-            Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\logo.jpg"); // Replace with your desired icon image path
+            Image image1 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
 
             switch (type) {
                 case SUCCESS:
-                    imageView.setImage(image);
+                    imageView.setImage(image1);
                     break;
                 case ERROR:
-                    imageView.setImage(image);
+                    imageView.setImage(image1);
                     break;
                 case WARNING:
-                    imageView.setImage(image);
+                    imageView.setImage(image1);
                     break;
                 case INFO:
-                    imageView.setImage(image);
+                    imageView.setImage(image1);
                     break;
             }
 

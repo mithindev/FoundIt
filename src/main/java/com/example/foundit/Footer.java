@@ -1,13 +1,16 @@
 package com.example.foundit;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
@@ -17,43 +20,37 @@ import java.net.URL;
 
 public class Footer extends Application {
 
+    private HBox footer;
+
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
-        // Create a footer HBox
+        footer = createFooter();
+
+        BorderPane root = new BorderPane();
+        root.setBottom(footer);
+
+        Scene scene = new Scene(root, 800, 400);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private HBox createFooter() throws MalformedURLException {
         HBox footer = new HBox();
-        footer.setAlignment(javafx.geometry.Pos.CENTER);
-        footer.setSpacing(10);
+        footer.setAlignment(Pos.CENTER);
+        footer.setSpacing(20);
 
-        // Add some labels to the footer
-        Text copyrightLabel = new Text("Copyright © 2023 Company Name");
+        Text copyrightLabel = new Text("© 2023 FoundIt");
         Text versionLabel = new Text("Version 1.0");
-        Text designedByLabel = new Text("Designed by Bard");
-        Text poweredByLabel = new Text("Powered by Python");
-        footer.getChildren().addAll(copyrightLabel, versionLabel, designedByLabel, poweredByLabel);
+        Text designedByLabel = new Text("Designed by @mithindev");
 
-        // Add some padding to the footer
-        footer.setPadding(new javafx.geometry.Insets(10));
-
-        // Add a separator line to the footer
         Line separator = new Line();
         separator.setStyle("-fx-stroke: black; -fx-stroke-width: 1px");
-        footer.getChildren().add(separator);
 
-        // Add a link to the footer
         Text linkLabel = new Text("Visit our website");
-        URL link = new URL("https://www.companyname.com");
-        TextFlow linkFlow = new TextFlow(linkLabel, new Hyperlink(link.toString()));
-        footer.getChildren().add(linkFlow);
+        URL link = new URL("https://www.github.com/mithindev");
+        Hyperlink hyperlink = new Hyperlink(link.toString());
+        TextFlow linkFlow = new TextFlow(linkLabel, hyperlink);
 
-        // Add some CSS styles to the footer
-        footer.setStyle("-fx-background-color: #333333; -fx-font-family: sans-serif");
-        copyrightLabel.setStyle("-fx-font-size: 12px; -fx-font-weight: bold");
-        versionLabel.setStyle("-fx-font-size: 10px");
-        designedByLabel.setStyle("-fx-font-size: 10px");
-        poweredByLabel.setStyle("-fx-font-size: 10px");
-        linkFlow.setStyle("-fx-font-size: 10px; -fx-color: #ffffff");
-
-        // Add some icons to the footer
         Image icon1 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
         Image icon2 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
         Image icon3 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
@@ -66,16 +63,23 @@ public class Footer extends Application {
         ImageView icon3View = new ImageView(icon3);
         icon3View.setFitWidth(20);
         icon3View.setFitHeight(20);
-        footer.getChildren().addAll(icon1View, icon2View, icon3View);
 
-        // Create a BorderPane and add the footer to it
-        BorderPane root = new BorderPane();
-        root.setBottom(footer);
+        footer.getChildren().addAll(icon1View, icon2View, icon3View, separator, linkFlow, versionLabel, designedByLabel, copyrightLabel);
 
-        // Create a scene and show it
-        Scene scene = new Scene(root, 800, 400);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        footer.setStyle("-fx-background-color: #333333;");
+        footer.setPadding(new javafx.geometry.Insets(10, 20, 10, 20));
+        separator.setStroke(Color.BLACK);
+        linkLabel.setFont(Font.font("Arial", 10));
+        hyperlink.setFont(Font.font("Arial", 10));
+        hyperlink.setTextFill(Color.WHITE);
+        versionLabel.setFont(Font.font("Arial", 10));
+        designedByLabel.setFont(Font.font("Arial", 10));
+        copyrightLabel.setFont(Font.font("Arial", 10));
+        icon1View.setStyle("-fx-background-color: white");
+        icon2View.setStyle("-fx-background-color: white");
+        icon3View.setStyle("-fx-background-color: white");
+
+        return footer;
     }
 
     public static void main(String[] args) {
