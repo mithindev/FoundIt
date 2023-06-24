@@ -16,8 +16,15 @@ import java.io.IOException;
 
 public class Test1 extends Application {
 
+    private String userId;
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     private static final String LOST_ITEMS_FILE = "lost_item.txt"; // File path for lost items
     private static final String FOUND_ITEMS_FILE = "found_item.txt"; // File path for found items
+    private static final String NOTIFICATION_FILE = "notification.txt"; // File path for notifications
 
     public static void main(String[] args) {
         launch(args);
@@ -130,21 +137,20 @@ public class Test1 extends Application {
             }
 
             if (matchFound) {
-                // Push a notification for match found
-//                Platform.runLater(() -> {
-//                    Notification.createNotification("Match Found", "A match has been found for your lost item!", Notification.NotificationType.SUCCESS, () -> {
-//                        // Action performed when the notification is dismissed
-//                        System.out.println("Match found notification dismissed!");
-//                    });
-//                });
-                System.out.println("Match found notification pushed!");
+                // Write a notification to the notification file
+                try (FileWriter writer = new FileWriter(NOTIFICATION_FILE, true)) {
+                    writer.write(userId + ": A match has been found for your lost item!");
+                    writer.write(System.lineSeparator());
+                    writer.flush();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+                System.out.println("Match found notification written to file!");
             } else {
                 System.out.println("No match found!");
             }
         });
-
-
-
 
         Scene scene = new Scene(grid, 700, 500);
         primaryStage.setScene(scene);

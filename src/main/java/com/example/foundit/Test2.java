@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Test2 extends Application {
-    public static final int MAX_NOTIFICATIONS = 4;
     private static final Duration NOTIFICATION_DURATION = Duration.seconds(5);
 
     private static List<NotificationPane> notifications;
@@ -72,11 +71,11 @@ public class Test2 extends Application {
     }
 
     public static void createNotification(String title, String message, NotificationType type, Runnable action) {
-        if (notifications.size() >= MAX_NOTIFICATIONS) {
-            // Remove the oldest notification if the maximum limit is reached
-            NotificationPane oldestNotification = notifications.remove(0);
-            notificationContainer.getChildren().remove(oldestNotification);
-        }
+//        if (notifications.size() >= MAX_NOTIFICATIONS) {
+//            // Remove the oldest notification if the maximum limit is reached
+//            NotificationPane oldestNotification = notifications.remove(0);
+//            notificationContainer.getChildren().remove(oldestNotification);
+//        }
 
         // Create the notification
         NotificationPane notification = new NotificationPane(title, message, type, action);
