@@ -16,10 +16,6 @@
       <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/src/main/webapp/index.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lost_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lost_item.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
@@ -194,7 +190,7 @@
       <workItem from="1687502963059" duration="1863000" />
       <workItem from="1687515465238" duration="703000" />
       <workItem from="1687523043733" duration="6847000" />
-      <workItem from="1687538577461" duration="4496000" />
+      <workItem from="1687538577461" duration="4734000" />
     </task>
     <servers />
   </component>
