@@ -1,118 +1,3 @@
-//package com.example.foundit;
-//
-//import javafx.application.Application;
-//import javafx.geometry.Insets;
-//import javafx.geometry.Pos;
-//import javafx.scene.Scene;
-//import javafx.scene.control.Button;
-//import javafx.scene.layout.BorderPane;
-//import javafx.scene.layout.HBox;
-//import javafx.scene.paint.Color;
-//import javafx.scene.text.Font;
-//import javafx.scene.text.FontWeight;
-//import javafx.stage.Stage;
-//
-//public class Home extends Application {
-//    private Stage primaryStage;
-//
-//    @Override
-//    public void start(Stage primaryStage) {
-//        this.primaryStage = primaryStage;
-//
-//        BorderPane root = new BorderPane();
-//        root.setPadding(new Insets(20));
-//        root.setStyle("-fx-background-color: #f4f4f4;");
-//
-//        HBox buttonContainer = new HBox();
-//        buttonContainer.setSpacing(20);
-//        buttonContainer.setAlignment(Pos.CENTER);
-//
-//        Button myNotificationButton = createButton("My Notifications");
-//        myNotificationButton.setOnAction(event -> {
-//            showNotification();
-//        });
-//
-//        Button reportLostItemButton = createButton("Report Lost Item");
-//        reportLostItemButton.setOnAction(event -> {
-//            showReportLostItem();
-//        });
-//
-//        Button submitFoundItemButton = createButton("Submit Found Item");
-//        submitFoundItemButton.setOnAction(event -> {
-//            showSubmitFoundItem();
-//        });
-//
-//        Button dashboardButton = createButton("Dashboard");
-//        dashboardButton.setOnAction(event -> {
-//            showDashboard();
-//        });
-//
-//        buttonContainer.getChildren().addAll(
-//                myNotificationButton, reportLostItemButton, submitFoundItemButton, dashboardButton
-//        );
-//
-//        root.setCenter(buttonContainer);
-//
-//        Scene scene = new Scene(root, 1000, 700);
-//        primaryStage.setTitle("Home");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//    }
-//
-//    private Button createButton(String text) {
-//        Button button = new Button(text);
-//        button.setPrefSize(200, 200);
-//        button.setStyle(
-//                "-fx-background-color: #ffffff;" +
-//                        "-fx-font-size: 16px;" +
-//                        "-fx-font-weight: bold;"
-//        );
-//        button.setTextFill(Color.BLACK);
-//        button.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-//
-//        // Hovering effect
-//        button.setOnMouseEntered(event -> {
-//            button.setStyle("-fx-background-color: #e0e0e0;");
-//        });
-//
-//        button.setOnMouseExited(event -> {
-//            button.setStyle("-fx-background-color: #ffffff;");
-//        });
-//
-//        // Clicking effect
-//        button.setOnMouseClicked(event -> {
-//            button.setStyle("-fx-background-color: #c0c0c0;");
-//        });
-//
-//        return button;
-//    }
-//
-//    private void showNotification() {
-//        // Replace with your implementation to show the "My Notifications" display
-//        System.out.println("Showing My Notifications");
-//    }
-//
-//    private void showReportLostItem() {
-//        // Replace with your implementation to show the "Report Lost Item" display
-//        System.out.println("Showing Report Lost Item display");
-//    }
-//
-//    private void showSubmitFoundItem() {
-//        // Replace with your implementation to show the "Submit Found Item" display
-//        System.out.println("Showing Submit Found Item display");
-//    }
-//
-//    private void showDashboard() {
-//        // Replace with your implementation to show the "Dashboard" display
-//        System.out.println("Showing Dashboard display");
-//    }
-//
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-//}
-
-
 package com.example.foundit;
 
 import javafx.application.Application;
@@ -120,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -127,21 +13,35 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.net.MalformedURLException;
+
 public class Home extends Application {
     private Stage primaryStage;
-    private String userId; // New member variable to store the userId
+    private String userId;
 
-    // Setter method for userId
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws MalformedURLException {
         this.primaryStage = primaryStage;
 
+        // Set application icon
+        Image icon = new Image("file:C:/Users/nmary/OneDrive/Desktop/UN ORGANISED/ILLUSTRATIONS/logo.jpg");
+        primaryStage.getIcons().add(icon);
+
+        // Header
+        HBox header = Header.createHeader();
+        header.setPadding(new Insets(10));
+        header.setStyle("-fx-background-color: #333333;");
+
+        // Footer
+        HBox footer = Footer.createFooter();
+        footer.setPadding(new Insets(10));
+        footer.setStyle("-fx-background-color: #333333;");
+
         BorderPane root = new BorderPane();
-        root.setPadding(new Insets(20));
         root.setStyle("-fx-background-color: #f4f4f4;");
 
         HBox buttonContainer = new HBox();
@@ -149,32 +49,26 @@ public class Home extends Application {
         buttonContainer.setAlignment(Pos.CENTER);
 
         Button myNotificationButton = createButton("My Notifications");
-        myNotificationButton.setOnAction(event -> {
-            showNotification();
-        });
+        myNotificationButton.setOnAction(event -> showNotification());
 
         Button reportLostItemButton = createButton("Report Lost Item");
-        reportLostItemButton.setOnAction(event -> {
-            showReportLostItem();
-        });
+        reportLostItemButton.setOnAction(event -> showReportLostItem());
 
         Button submitFoundItemButton = createButton("Submit Found Item");
-        submitFoundItemButton.setOnAction(event -> {
-            showSubmitFoundItem();
-        });
+        submitFoundItemButton.setOnAction(event -> showSubmitFoundItem());
 
         Button dashboardButton = createButton("Dashboard");
-        dashboardButton.setOnAction(event -> {
-            showDashboard();
-        });
+        dashboardButton.setOnAction(event -> showDashboard());
 
         buttonContainer.getChildren().addAll(
                 myNotificationButton, reportLostItemButton, submitFoundItemButton, dashboardButton
         );
 
         root.setCenter(buttonContainer);
+        root.setBottom(footer);
+        root.setTop(header);
 
-        Scene scene = new Scene(root, 1000, 700);
+        Scene scene = new Scene(root, 900, 700);
         primaryStage.setTitle("Home");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -184,26 +78,28 @@ public class Home extends Application {
         Button button = new Button(text);
         button.setPrefSize(200, 200);
         button.setStyle(
-                "-fx-background-color: #ffffff;" +
+                "-fx-background-color: linear-gradient(#4CAF50, #2E7D32);" +
                         "-fx-font-size: 16px;" +
-                        "-fx-font-weight: bold;"
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: #FFFFFF;"
         );
-        button.setTextFill(Color.BLACK);
         button.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
         // Hovering effect
-        button.setOnMouseEntered(event -> {
-            button.setStyle("-fx-background-color: #e0e0e0;");
-        });
-
-        button.setOnMouseExited(event -> {
-            button.setStyle("-fx-background-color: #ffffff;");
-        });
+        button.setOnMouseEntered(event -> button.setStyle(
+                "-fx-background-color: linear-gradient(#81C784, #43A047);"
+        ));
+        button.setOnMouseExited(event -> button.setStyle(
+                "-fx-background-color: linear-gradient(#4CAF50, #2E7D32);"
+        ));
 
         // Clicking effect
-        button.setOnMouseClicked(event -> {
-            button.setStyle("-fx-background-color: #c0c0c0;");
-        });
+        button.setOnMousePressed(event -> button.setStyle(
+                "-fx-background-color: linear-gradient(#388E3C, #1B5E20);"
+        ));
+        button.setOnMouseReleased(event -> button.setStyle(
+                "-fx-background-color: linear-gradient(#81C784, #43A047);"
+        ));
 
         return button;
     }
@@ -214,23 +110,21 @@ public class Home extends Application {
         notificationPage.start(new Stage());
     }
 
-
     private void showReportLostItem() {
-        // Replace with your implementation to show the "Report Lost Item" display
-        Test1 reportLostItem = new Test1();
+        ReportLostItem reportLostItem = new ReportLostItem();
         reportLostItem.setUserId(userId);
         reportLostItem.start(new Stage());
-
         System.out.println("Showing Report Lost Item display");
     }
 
     private void showSubmitFoundItem() {
-        // Replace with your implementation to show the "Submit Found Item" display
+        FoundLostItem foundLostItem = new FoundLostItem();
+        foundLostItem.setUserId(userId);
+        foundLostItem.start(new Stage());
         System.out.println("Showing Submit Found Item display");
     }
 
     private void showDashboard() {
-        // Replace with your implementation to show the "Dashboard" display
         System.out.println("Showing Dashboard display");
     }
 

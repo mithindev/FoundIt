@@ -1,3 +1,2 @@
-kutty:1234
 CB.EN.U4AIE22132:incorreCt
 abcd:1234

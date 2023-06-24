@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Header extends Application {
+public class Test3 extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -84,31 +84,14 @@ public class Header extends Application {
 
         // Adding the contributions section to the header
         Button contributionsButton = createHeaderButton("Contributions", "Contributions.class");
-        contributionsButton.setOnAction(event -> {
-            // Handle contributions button click event
-            Contributions contributions = new Contributions();
-            contributions.start(new Stage());
-            // Open the Contributions class or perform related actions
-            System.out.println("Opening Contributions...");
-        });
         searchBox.getChildren().add(contributionsButton);
 
         // Adding the contact section to the header
         Button contactButton = createHeaderButton("Contact", "Contact.class");
-        contactButton.setOnAction(event -> {
-            // Handle contact button click event
-            // Open the Contact class or perform related actions
-            System.out.println("Opening Contact...");
-        });
         searchBox.getChildren().add(contactButton);
 
         // Adding the notifications section to the header
         Button notificationsButton = createHeaderButton("Notifications", "Notifications.class");
-        notificationsButton.setOnAction(event -> {
-            Notification notification = new Notification();
-            notification.start(new Stage());
-            System.out.println("Opening Notifications...");
-        });
         searchBox.getChildren().add(notificationsButton);
 
         // Adding the search box HBox to the header

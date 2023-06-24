@@ -39,7 +39,7 @@ public class Test2 extends Application {
         notificationContainer.setStyle("-fx-background-color: #f8f8f8;");
 
         // Create a sample notification
-        createNotification("Success", "We Found a match!", NotificationType.SUCCESS, () -> {
+        createNotification("Success", "We Found a match!", () -> {
             // Action performed when the button is clicked
             System.out.println("Notification action performed!");
         });
@@ -70,15 +70,10 @@ public class Test2 extends Application {
         primaryStage.show();
     }
 
-    public static void createNotification(String title, String message, NotificationType type, Runnable action) {
-//        if (notifications.size() >= MAX_NOTIFICATIONS) {
-//            // Remove the oldest notification if the maximum limit is reached
-//            NotificationPane oldestNotification = notifications.remove(0);
-//            notificationContainer.getChildren().remove(oldestNotification);
-//        }
+    public static void createNotification(String title, String message, Runnable action) {
 
         // Create the notification
-        NotificationPane notification = new NotificationPane(title, message, type, action);
+        NotificationPane notification = new NotificationPane(title, message, action);
         notifications.add(notification);
         notificationContainer.getChildren().add(notification);
 
@@ -88,15 +83,6 @@ public class Test2 extends Application {
         fadeInTransition.setToValue(1);
         fadeInTransition.play();
 
-        // Schedule notification dismissal
-//        FadeTransition fadeOutTransition = new FadeTransition(NOTIFICATION_DURATION, notification);
-//        fadeOutTransition.setFromValue(1);
-//        fadeOutTransition.setToValue(0);
-//        fadeOutTransition.setOnFinished(event -> {
-//            notifications.remove(notification);
-//            notificationContainer.getChildren().remove(notification);
-//        });
-//        fadeOutTransition.playFromStart();
     }
 
     static class NotificationPane extends VBox {
@@ -104,7 +90,7 @@ public class Test2 extends Application {
         private static final int NOTIFICATION_HEIGHT = 80;
         private static final int ICON_SIZE = 24;
 
-        public NotificationPane(String title, String message, NotificationType type, Runnable action) {
+        public NotificationPane(String title, String message, Runnable action) {
             setPrefSize(NOTIFICATION_WIDTH, NOTIFICATION_HEIGHT);
             setMaxSize(NOTIFICATION_WIDTH, NOTIFICATION_HEIGHT);
             setStyle("-fx-background-color: #ffffff; -fx-border-color: #c0c0c0; -fx-border-width: 1px;");
@@ -116,32 +102,17 @@ public class Test2 extends Application {
             HBox content = new HBox(10);
             content.setAlignment(Pos.CENTER_LEFT);
             content.setPadding(new Insets(10));
-            content.getChildren().addAll(createIcon(type), titleLabel, messageLabel, createActionButton(action));
+            content.getChildren().addAll(createIcon(), titleLabel, messageLabel, createActionButton(action));
 
             getChildren().add(content);
         }
 
-        private ImageView createIcon(NotificationType type) {
+        private ImageView createIcon() {
             ImageView imageView = new ImageView();
             imageView.setFitWidth(ICON_SIZE);
             imageView.setFitHeight(ICON_SIZE);
 
             Image image1 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-
-            switch (type) {
-                case SUCCESS:
-                    imageView.setImage(image1);
-                    break;
-                case ERROR:
-                    imageView.setImage(image1);
-                    break;
-                case WARNING:
-                    imageView.setImage(image1);
-                    break;
-                case INFO:
-                    imageView.setImage(image1);
-                    break;
-            }
 
             return imageView;
         }
@@ -169,14 +140,8 @@ public class Test2 extends Application {
         }
     }
 
-    enum NotificationType {
-        SUCCESS,
-        ERROR,
-        WARNING,
-        INFO
-    }
 
-    public static void display(String title, String message, NotificationType type, Runnable action) {
-        createNotification(title, message, type, action);
+    public static void display(String title, String message, Runnable action) {
+        createNotification(title, message, action);
     }
 }

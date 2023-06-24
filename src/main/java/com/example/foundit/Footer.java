@@ -16,11 +16,10 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 public class Footer extends Application {
 
-    private HBox footer;
+    public HBox footer;
 
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
@@ -34,7 +33,7 @@ public class Footer extends Application {
         primaryStage.show();
     }
 
-    private HBox createFooter() throws MalformedURLException {
+    public static HBox createFooter() throws MalformedURLException {
         HBox footer = new HBox();
         footer.setAlignment(Pos.CENTER);
         footer.setSpacing(20);
@@ -46,10 +45,10 @@ public class Footer extends Application {
         Line separator = new Line();
         separator.setStyle("-fx-stroke: black; -fx-stroke-width: 1px");
 
-        Text linkLabel = new Text("Visit our website");
-        URL link = new URL("https://www.github.com/mithindev");
-        Hyperlink hyperlink = new Hyperlink(link.toString());
-        TextFlow linkFlow = new TextFlow(linkLabel, hyperlink);
+        Text linkLabel = new Text("GROUP - 12");
+        Hyperlink hyperlink = new Hyperlink();
+        hyperlink.setGraphic(linkLabel);
+        TextFlow linkFlow = new TextFlow(hyperlink);
 
         Image icon1 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
         Image icon2 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");

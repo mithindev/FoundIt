@@ -1,12 +1,13 @@
 package com.example.foundit;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -33,6 +34,13 @@ public class ReportLostItem extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Report Lost Item");
+
+        // Header
+        Label headerLabel = new Label("Report Lost Item");
+        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+
+        // Footer
+        Label footerLabel = new Label("© 2023 FoundIt. All rights reserved.");
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -94,7 +102,21 @@ public class ReportLostItem extends Application {
 
         // Submit Button
         Button submitButton = new Button("Submit");
+        submitButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        submitButton.setPrefWidth(120);
         grid.add(submitButton, 1, 8);
+
+        // Footer
+        VBox footerBox = new VBox(10);
+        footerBox.setAlignment(Pos.CENTER);
+        footerBox.getChildren().add(footerLabel);
+
+        // Main layout
+        VBox mainLayout = new VBox(20);
+        mainLayout.setAlignment(Pos.CENTER);
+        mainLayout.setPadding(new Insets(20));
+        mainLayout.setStyle("-fx-background-color: #e9e9e9;");
+        mainLayout.getChildren().addAll(headerLabel, grid, footerBox);
 
         // Submit Button Action
         submitButton.setOnAction(e -> {
@@ -152,7 +174,13 @@ public class ReportLostItem extends Application {
             }
         });
 
-        Scene scene = new Scene(grid, 700, 500);
+        Scene scene = new Scene(mainLayout, 780, 550); // Use mainLayout instead of grid
+
+        // Apply CSS styles to the scene
+        String css = "-fx-font-size: 14px;" +
+                "-fx-background-color: #e9e9e9;";
+        scene.getRoot().setStyle(css);
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }

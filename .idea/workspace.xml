@@ -18,8 +18,19 @@
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LIMITATIONS/New Text Document.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/found_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/found_item.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lost_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lost_item.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notification.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Footer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Footer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/FoundLostItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/FoundLostItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Notification.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/ReportLostItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/ReportLostItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/users.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
@@ -93,22 +104,9 @@
       <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FoundLostItem">
+  <component name="RunManager" selected="Application.Login">
     <configuration name="FoundLostItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.foundit.FoundLostItem" />
-      <module name="FoundIt" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.foundit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Home" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Home" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -146,8 +144,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test1" />
+    <configuration name="Test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test2" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test4" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -161,11 +172,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FoundLostItem" />
         <item itemvalue="Application.Login" />
         <item itemvalue="Application.Notification" />
-        <item itemvalue="Application.Test1" />
-        <item itemvalue="Application.Home" />
+        <item itemvalue="Application.Test4" />
+        <item itemvalue="Application.Test2" />
+        <item itemvalue="Application.FoundLostItem" />
       </list>
     </recent_temporary>
   </component>
@@ -196,6 +207,7 @@
       <workItem from="1687523043733" duration="6847000" />
       <workItem from="1687538577461" duration="4734000" />
       <workItem from="1687609888827" duration="4367000" />
+      <workItem from="1687619733263" duration="7309000" />
     </task>
     <servers />
   </component>

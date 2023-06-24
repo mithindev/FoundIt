@@ -1,7 +1,6 @@
 package com.example.foundit;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -33,6 +32,24 @@ public class FoundLostItem extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Report Found Item");
+
+        // Header
+        Label headerLabel = new Label("Found Item Report");
+        headerLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+
+        VBox headerBox = new VBox(headerLabel);
+        headerBox.setAlignment(Pos.CENTER);
+        headerBox.setPadding(new Insets(10));
+        headerBox.setStyle("-fx-background-color: #f1f1f1;");
+
+        // Footer
+        Label footerLabel = new Label("© 2023 FoundIt App. All rights reserved.");
+        footerLabel.setStyle("-fx-font-size: 12px;");
+
+        VBox footerBox = new VBox(footerLabel);
+        footerBox.setAlignment(Pos.CENTER);
+        footerBox.setPadding(new Insets(10));
+        footerBox.setStyle("-fx-background-color: #f1f1f1;");
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -152,7 +169,22 @@ public class FoundLostItem extends Application {
             }
         });
 
-        Scene scene = new Scene(grid, 700, 500);
+        // Main layout
+        BorderPane mainLayout = new BorderPane();
+        mainLayout.setTop(headerBox);
+        mainLayout.setCenter(grid);
+        mainLayout.setBottom(footerBox);
+        mainLayout.setAlignment(headerBox, Pos.CENTER);
+        mainLayout.setAlignment(footerBox, Pos.CENTER);
+        mainLayout.setPadding(new Insets(10));
+        mainLayout.setStyle("-fx-background-color: #e9e9e9;");
+
+        Scene scene = new Scene(mainLayout, 800, 570);
+
+        // Apply CSS styles to the scene
+        String css = "-fx-font-size: 14px;";
+        scene.getRoot().setStyle(css);
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }
