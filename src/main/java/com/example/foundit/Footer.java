@@ -43,7 +43,7 @@ public class Footer extends Application {
         Text designedByLabel = new Text("Designed by @mithindev");
 
         Line separator = new Line();
-        separator.setStyle("-fx-stroke: black; -fx-stroke-width: 1px");
+        separator.setStyle("-fx-stroke: #ffffff; -fx-stroke-width: 1px");
 
         Text linkLabel = new Text("GROUP - 12");
         Hyperlink hyperlink = new Hyperlink();
@@ -67,7 +67,7 @@ public class Footer extends Application {
 
         footer.setStyle("-fx-background-color: #333333;");
         footer.setPadding(new javafx.geometry.Insets(10, 20, 10, 20));
-        separator.setStroke(Color.BLACK);
+        separator.setStroke(Color.WHITE);
         linkLabel.setFont(Font.font("Arial", 10));
         hyperlink.setFont(Font.font("Arial", 10));
         hyperlink.setTextFill(Color.WHITE);
@@ -77,6 +77,9 @@ public class Footer extends Application {
         icon1View.setStyle("-fx-background-color: white");
         icon2View.setStyle("-fx-background-color: white");
         icon3View.setStyle("-fx-background-color: white");
+        icon1View.setPreserveRatio(true);
+        icon2View.setPreserveRatio(true);
+        icon3View.setPreserveRatio(true);
 
         return footer;
     }

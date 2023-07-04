@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dashboard extends Application {
-    private static final String LOST_ITEMS_FILE = "lost_items.txt";
-    private static final String FOUND_ITEMS_FILE = "found_items.txt";
+    private static final String LOST_ITEMS_FILE = "lost_item.txt";
+    private static final String FOUND_ITEMS_FILE = "found_item.txt";
     private TableView<Item> table;
     private ObservableList<Item> lostItems;
     private ObservableList<Item> foundItems;

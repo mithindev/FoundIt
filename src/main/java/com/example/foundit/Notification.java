@@ -16,12 +16,11 @@ import java.util.List;
 
 public class Notification extends Application {
     private String userIdFinal;
+    private static final String NOTIFICATION_FILE = "notification.txt";
 
     public void setUserId(String userId) {
         this.userIdFinal = userId;
     }
-
-    private static final String NOTIFICATION_FILE = "notification.txt";
 
     public static void main(String[] args) {
         launch(args);
@@ -29,6 +28,16 @@ public class Notification extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        // Set application icon
+        Image icon = new Image("file:C:/Users/nmary/OneDrive/Desktop/UN ORGANISED/ILLUSTRATIONS/logo.jpg");
+        primaryStage.getIcons().add(icon);
+
+        // Create the header
+        HBox header = createHeader();
+
+        // Create the footer
+        HBox footer = createFooter();
+
         // Load and display notifications for a sample user ID
         String userId = userIdFinal;
         List<String> notifications = getNotificationsForUser(userId);
@@ -39,12 +48,99 @@ public class Notification extends Application {
         }
 
         // Create the left-side image view
-        Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(400); // Adjust the width as desired
-        imageView.setFitHeight(300); // Adjust the height as desired
+        ImageView imageView = createImageView();
 
         // Create the right-side pane for the notifications
+        VBox notificationPane = createNotificationPane(userId, notifications);
+
+        // Create the split pane and set its orientation and division ratio
+        SplitPane splitPane = createSplitPane(imageView, notificationPane);
+
+        // Create the root pane
+        BorderPane root = new BorderPane();
+        root.setTop(header);
+        root.setCenter(splitPane);
+        root.setBottom(footer);
+
+        // Create the scene with the root pane
+        Scene scene = new Scene(root, 800, 600);
+
+        // Apply embedded styles
+        scene.getRoot().setStyle("-fx-font-family: Arial;");
+
+        // Set the stage title and scene, then show the stage
+        primaryStage.setTitle("Notification");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private HBox createHeader() {
+        HBox header = new HBox();
+        header.setPadding(new Insets(10));
+        header.setAlignment(Pos.CENTER);
+        Label titleLabel = new Label("Notifications");
+        titleLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+        header.getChildren().add(titleLabel);
+        header.setStyle("-fx-background-color: #333333;");
+        return header;
+    }
+
+    private HBox createFooter() {
+        HBox footer = new HBox();
+        footer.setPadding(new Insets(10));
+        footer.setAlignment(Pos.CENTER);
+        Label footerLabel = new Label("© 2023 FoundIt");
+        footerLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        footerLabel.setStyle("-fx-font-size: 14px;");
+        footer.getChildren().add(footerLabel);
+        footer.setStyle("-fx-background-color: #333333;");
+        return footer;
+    }
+
+    private List<String> getNotificationsForUser(String userId) {
+        List<String> notifications = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(NOTIFICATION_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+                if (parts.length >= 2 && parts[0].trim().equals(userId)) {
+                    String notification = parts[1].trim();
+                    notifications.add(notification);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return notifications;
+    }
+
+    private void showNoNotificationsAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Notifications");
+        alert.setHeaderText(null);
+        alert.setContentText("No notifications found for the current user.");
+        alert.showAndWait();
+    }
+
+    private void showNotification(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private ImageView createImageView() {
+        ImageView imageView = null;
+        Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+        imageView = new ImageView(image);
+        imageView.setFitWidth(400); // Adjust the width as desired
+        imageView.setFitHeight(300); // Adjust the height as desired
+        return imageView;
+    }
+
+    private VBox createNotificationPane(String userId, List<String> notifications) {
         VBox notificationPane = new VBox(10);
         notificationPane.setPadding(new Insets(20));
         notificationPane.setAlignment(Pos.TOP_LEFT);
@@ -64,41 +160,15 @@ public class Notification extends Application {
             notificationPane.getChildren().add(notificationBox);
         }
 
-        // Create the split pane and set its orientation and division ratio
+        return notificationPane;
+    }
+
+    private SplitPane createSplitPane(ImageView imageView, VBox notificationPane) {
         SplitPane splitPane = new SplitPane();
         splitPane.setOrientation(javafx.geometry.Orientation.HORIZONTAL);
         splitPane.setDividerPositions(0.5);
-
-        // Add the image view and right pane to the split pane
         splitPane.getItems().addAll(imageView, notificationPane);
-
-        // Create the scene with the split pane as its root
-        Scene scene = new Scene(splitPane, 800, 600);
-
-        // Apply embedded styles
-        scene.getRoot().setStyle("-fx-font-family: Arial;");
-
-        // Set the stage title and scene, then show the stage
-        primaryStage.setTitle("Notification");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    private List<String> getNotificationsForUser(String userId) {
-        List<String> notifications = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(NOTIFICATION_FILE))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (parts.length >= 2 && parts[0].trim().equals(userId)) {
-                    String notification = parts[1].trim();
-                    notifications.add(notification);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return notifications;
+        return splitPane;
     }
 
     private void removeNotificationFromUser(String userId, String notification) {
@@ -132,21 +202,5 @@ public class Notification extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void showNoNotificationsAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Notifications");
-        alert.setHeaderText(null);
-        alert.setContentText("No notifications found for the current user.");
-        alert.showAndWait();
-    }
-
-    private void showNotification(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

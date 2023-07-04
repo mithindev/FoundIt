@@ -49,7 +49,13 @@ public class Home extends Application {
         buttonContainer.setAlignment(Pos.CENTER);
 
         Button myNotificationButton = createButton("My Notifications");
-        myNotificationButton.setOnAction(event -> showNotification());
+        myNotificationButton.setOnAction(event -> {
+            try {
+                showNotification();
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         Button reportLostItemButton = createButton("Report Lost Item");
         reportLostItemButton.setOnAction(event -> showReportLostItem());
@@ -104,7 +110,7 @@ public class Home extends Application {
         return button;
     }
 
-    private void showNotification() {
+    private void showNotification() throws MalformedURLException {
         Notification notificationPage = new Notification();
         notificationPage.setUserId(userId);
         notificationPage.start(new Stage());
