@@ -1,201 +1,281 @@
 package com.example.foundit;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.time.LocalDate;
-import java.util.Optional;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Test extends Application {
-    private static final String LOST_ITEMS_FILE = "lost_items.txt";
-    private static final String FOUND_ITEMS_FILE = "found_items.txt";
-    private TableView<Item> table;
-    private ObservableList<Item> lostItems;
-    private ObservableList<Item> foundItems;
+    private static final String USER_FILE = "users.txt";
+    private Map<String, String> userCredentials;
 
     @Override
     public void init() {
-        loadItemsFromFiles();
+        userCredentials = readUserCredentials();
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws MalformedURLException {
+        Image icon = new Image(getFileUrl("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\logo.jpg"));
+        stage.getIcons().add(icon);
+
+        // Creating a BorderPane
         BorderPane root = new BorderPane();
-        Scene scene = new Scene(root, 800, 600);
+        root.setStyle("-fx-background-color: #f8f8f8;");
 
-        // Header
-        Label titleLabel = new Label("Lost and Found Dashboard");
-        titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        // Creating a scene to stage.
+        Scene scene = new Scene(root);
 
-        VBox headerBox = new VBox(titleLabel);
-        headerBox.setPadding(new Insets(20));
-        headerBox.setStyle("-fx-background-color: #f4f4f4;");
-        root.setTop(headerBox);
+        // Create the header
+        HBox header = HeaderLogin.createHeader();
 
-        // Left Sidebar
-        VBox sidebarBox = createSidebar();
-        root.setLeft(sidebarBox);
+        // Create the footer
+        HBox footer = Footer.createFooter();
 
-        // Center Content
-        table = new TableView<>();
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        TableColumn<Item, String> nameColumn = new TableColumn<>("Name");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        TableColumn<Item, String> descriptionColumn = new TableColumn<>("Description");
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        TableColumn<Item, LocalDate> dateColumn = new TableColumn<>("Date");
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        TableColumn<Item, String> locationColumn = new TableColumn<>("Location");
-        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
-        TableColumn<Item, String> contactColumn = new TableColumn<>("Contact");
-        contactColumn.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        // Splitting the Page into two equal parts.
+        SplitPane middle = new SplitPane();
+        middle.setDividerPosition(1, 1);
 
-        table.getColumns().addAll(nameColumn, descriptionColumn, dateColumn, locationColumn, contactColumn);
+        // Left Pane with Image
+        Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
 
-        VBox contentBox = new VBox();
-        contentBox.setPadding(new Insets(20));
-        contentBox.setSpacing(10);
-        contentBox.getChildren().add(table);
-        root.setCenter(contentBox);
+        ImageView leftImageView = new ImageView(image);
+        leftImageView.setPreserveRatio(true);
+        leftImageView.setFitHeight(400);
 
-        table.setItems(lostItems);
+        StackPane left = new StackPane(leftImageView);
+        left.setPadding(new Insets(10));
 
-        stage.setTitle("Dashboard");
+        VBox right = new VBox(10);
+        right.setAlignment(Pos.CENTER);
+        right.setPadding(new Insets(10));
+
+        Text title = new Text("Sign In");
+        title.setFont(Font.font("Arial", 24));
+        title.setFill(Color.BLACK);
+
+        // Right Pane with Login Form
+        GridPane rightPane = new GridPane();
+        rightPane.setAlignment(Pos.CENTER);
+        rightPane.setHgap(10);
+        rightPane.setVgap(10);
+        rightPane.setPadding(new Insets(50));
+
+        Label amritaLogText = new Label("Amrita ID:");
+        amritaLogText.setStyle("-fx-font-weight: bold;");
+        Label usernameLabel = new Label("Username:");
+        TextField usernameField = new TextField();
+        Label passwordLabel = new Label("Password:");
+        PasswordField passwordField = new PasswordField();
+
+        Button loginButton = new Button("Login");
+        loginButton.setStyle("-fx-background-color: #a3113e; -fx-text-fill: white;");
+        loginButton.setOnAction(event -> {
+            // Perform login logic here
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            if (authenticateUser(username, password)) {
+                try {
+                    if (username.contains(".admin.edu")) {
+                        openAdminHomePage(stage, username);
+                    } else if (username.contains(".stu.edu")) {
+                        openStudentHomePage(stage, username);
+                    }
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                showErrorDialog("Invalid username or password");
+            }
+        });
+
+        Button signupButton = new Button("Signup");
+        signupButton.setStyle("-fx-background-color: #a3113e; -fx-text-fill: white;");
+        signupButton.setOnAction(event -> {
+            openSignupPage(stage);
+        });
+
+        rightPane.add(amritaLogText, 0, 0, 2, 1);
+        rightPane.add(usernameLabel, 0, 1);
+        rightPane.add(usernameField, 1, 1);
+        rightPane.add(passwordLabel, 0, 2);
+        rightPane.add(passwordField, 1, 2);
+        rightPane.add(loginButton, 1, 3);
+        rightPane.add(signupButton, 1, 4);
+
+        VBox loginContainer = new VBox(20, title, rightPane);
+        loginContainer.setAlignment(Pos.CENTER);
+
+        // Set the header, middle section, and footer in the border pane
+        root.setTop(header);
+        root.setLeft(left);
+        root.setCenter(loginContainer);
+        root.setBottom(footer);
+
+        stage.setTitle("Amrita Integrated Management System");
+        stage.setWidth(1080);
+        stage.setHeight(720);
         stage.setScene(scene);
         stage.show();
-
-        // Save items to files on application exit
-        stage.setOnCloseRequest(event -> {
-            saveItemsToFile(lostItems, LOST_ITEMS_FILE);
-            saveItemsToFile(foundItems, FOUND_ITEMS_FILE);
-        });
     }
 
-    private VBox createSidebar() {
-        VBox sidebarBox = new VBox();
-        sidebarBox.setPadding(new Insets(20));
-        sidebarBox.setSpacing(10);
-
-        Button lostItemsButton = new Button("Lost Items");
-        lostItemsButton.setOnAction(event -> {
-            table.setItems(lostItems);
-        });
-
-        Button foundItemsButton = new Button("Found Items");
-        foundItemsButton.setOnAction(event -> {
-            table.setItems(foundItems);
-        });
-
-        Button addNewItemButton = new Button("Add New Item");
-        addNewItemButton.setOnAction(event -> {
-            showAddItemDialog();
-        });
-
-        sidebarBox.getChildren().addAll(lostItemsButton, foundItemsButton, addNewItemButton);
-        return sidebarBox;
+    private String getFileUrl(String filePath) {
+        try {
+            return new File(filePath).toURI().toURL().toExternalForm();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    private void loadItemsFromFiles() {
-        lostItems = Item.loadItemsFromFile(LOST_ITEMS_FILE);
-        foundItems = Item.loadItemsFromFile(FOUND_ITEMS_FILE);
-    }
-
-    private void saveItemsToFile(ObservableList<Item> items, String filename) {
-        Item.saveItemsToFile(items, filename);
-    }
-
-    private void showAddItemDialog() {
-        Dialog<Item> dialog = new Dialog<>();
-        dialog.setTitle("Add New Item");
-        dialog.setHeaderText("Enter item details");
-
-        ButtonType addButton = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
-
-        VBox dialogBox = new VBox();
-        dialogBox.setSpacing(10);
-        dialogBox.setPadding(new Insets(20));
-
-        TextField nameField = new TextField();
-        nameField.setPromptText("Item name");
-
-        TextArea descriptionArea = new TextArea();
-        descriptionArea.setPromptText("Item description");
-
-        DatePicker datePicker = new DatePicker();
-        datePicker.setPromptText("Date");
-
-        TextField locationField = new TextField();
-        locationField.setPromptText("Location");
-
-        TextField contactField = new TextField();
-        contactField.setPromptText("Contact");
-
-        Button uploadImageButton = new Button("Upload Image");
-        uploadImageButton.setOnAction(event -> {
-            String imagePath = showImageUploadDialog();
-            // Handle the selected image path
-        });
-
-        dialogBox.getChildren().addAll(
-                new Label("Name:"), nameField,
-                new Label("Description:"), descriptionArea,
-                new Label("Date:"), datePicker,
-                new Label("Location:"), locationField,
-                new Label("Contact:"), contactField,
-                uploadImageButton
-        );
-
-        dialog.getDialogPane().setContent(dialogBox);
-
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == addButton) {
-                String name = nameField.getText();
-                String description = descriptionArea.getText();
-                LocalDate date = datePicker.getValue();
-                String location = locationField.getText();
-                String contact = contactField.getText();
-
-                return new Item(name, description, date, location, contact);
+    private Map<String, String> readUserCredentials() {
+        Map<String, String> credentials = new HashMap<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(USER_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+                if (parts.length == 2) {
+                    String username = parts[0].trim();
+                    String password = parts[1].trim();
+                    credentials.put(username, password);
+                }
             }
-            return null;
-        });
-
-        dialog.showAndWait().ifPresent(item -> {
-            lostItems.add(item);
-            table.setItems(lostItems);
-            saveItemsToFile(lostItems, LOST_ITEMS_FILE);
-        });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return credentials;
     }
 
-    private String showImageUploadDialog() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Upload Image");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
-        );
+    private boolean authenticateUser(String username, String password) {
+        if (isUsernameValid(username)) {
+            if (userCredentials.containsKey(username)) {
+                String storedPassword = userCredentials.get(username);
+                if (storedPassword.equals(password)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-        File selectedFile = fileChooser.showOpenDialog(null);
-        if (selectedFile != null) {
-            return selectedFile.getAbsolutePath();
-        } else {
-            return ""; // No image selected
+    private boolean isUsernameValid(String username) {
+        return username.contains(".stu.edu") || username.contains(".admin.edu");
+    }
+
+    private void openAdminHomePage(Stage stage, String userId) throws MalformedURLException {
+        Home home = new Home();
+        home.setUserId(userId); // Set the userId in the Home class
+        home.start(stage);
+    }
+
+    private void openStudentHomePage(Stage stage, String userId) throws MalformedURLException {
+        HomeStudent homeStudent = new HomeStudent();
+        homeStudent.setUserId(userId); // Set the userId in the HomeStudent class
+        homeStudent.start(stage);
+    }
+
+    private void openSignupPage(Stage stage) {
+        Stage signupStage = new Stage();
+        GridPane signupPane = new GridPane();
+        signupPane.setAlignment(Pos.CENTER);
+        signupPane.setHgap(10);
+        signupPane.setVgap(10);
+        signupPane.setPadding(new Insets(50));
+
+        Label signupLabel = new Label("Signup");
+        signupLabel.setStyle("-fx-font-weight: bold;");
+        Label usernameLabel = new Label("Username:");
+        TextField usernameField = new TextField();
+        Label passwordLabel = new Label("Password:");
+        PasswordField passwordField = new PasswordField();
+        Label reenterPasswordLabel = new Label("Re-enter Password:");
+        PasswordField reenterPasswordField = new PasswordField();
+
+        Button signupButton = new Button("Sign up");
+        signupButton.setStyle("-fx-background-color: #a3113e; -fx-text-fill: white;");
+        signupButton.setOnAction(event -> {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            String reenterPassword = reenterPasswordField.getText();
+
+            if (!password.equals(reenterPassword)) {
+                showErrorDialog("Passwords do not match");
+                return;
+            }
+
+            if (!isUsernameValid(username)) {
+                showErrorDialog("Invalid username format. It should contain either '.stu.edu' or '.admin.edu'");
+                return;
+            }
+
+            if (userCredentials.containsKey(username)) {
+                showErrorDialog("Username already exists");
+                return;
+            }
+
+            userCredentials.put(username, password);
+            saveUserCredentials();
+
+            signupStage.close();
+            showSuccessDialog("Signup successful! Please login.");
+        });
+
+        signupPane.add(signupLabel, 0, 0, 2, 1);
+        signupPane.add(usernameLabel, 0, 1);
+        signupPane.add(usernameField, 1, 1);
+        signupPane.add(passwordLabel, 0, 2);
+        signupPane.add(passwordField, 1, 2);
+        signupPane.add(reenterPasswordLabel, 0, 3);
+        signupPane.add(reenterPasswordField, 1, 3);
+        signupPane.add(signupButton, 1, 4);
+
+        Scene signupScene = new Scene(signupPane);
+        signupStage.setTitle("Signup");
+        signupStage.setWidth(400);
+        signupStage.setHeight(300);
+        signupStage.setScene(signupScene);
+        signupStage.show();
+    }
+
+    private void showErrorDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showSuccessDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void saveUserCredentials() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE))) {
+            for (Map.Entry<String, String> entry : userCredentials.entrySet()) {
+                writer.write(entry.getKey() + ":" + entry.getValue());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
 
     public static void main(String[] args) {
         launch(args);

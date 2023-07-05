@@ -18,7 +18,9 @@
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/users.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
@@ -92,7 +94,7 @@
       <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Login">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Header" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.foundit.Header" />
       <module name="FoundIt" />
@@ -106,21 +108,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HeaderLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.HeaderLogin" />
-      <module name="FoundIt" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.foundit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Home" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Home" />
+    <configuration name="HomeStudent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.HomeStudent" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -158,13 +147,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.HomeStudent" />
         <item itemvalue="Application.Login" />
         <item itemvalue="Application.ReportLostItem" />
         <item itemvalue="Application.Header" />
-        <item itemvalue="Application.Home" />
-        <item itemvalue="Application.HeaderLogin" />
       </list>
     </recent_temporary>
   </component>
@@ -200,7 +202,7 @@
       <workItem from="1687695391262" duration="946000" />
       <workItem from="1688386749845" duration="2248000" />
       <workItem from="1688389133374" duration="1232000" />
-      <workItem from="1688570760540" duration="4587000" />
+      <workItem from="1688570760540" duration="6835000" />
     </task>
     <servers />
   </component>

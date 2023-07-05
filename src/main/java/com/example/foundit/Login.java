@@ -89,7 +89,11 @@ public class Login extends Application {
             String password = passwordField.getText();
             if (authenticateUser(username, password)) {
                 try {
-                    openHomePage(stage, username);
+                    if (username.contains(".admin.edu")) {
+                        openAdminHomePage(stage, username);
+                    } else if (username.contains(".stu.edu")) {
+                        openStudentHomePage(stage, username);
+                    }
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
@@ -156,28 +160,31 @@ public class Login extends Application {
     }
 
     private boolean authenticateUser(String username, String password) {
-        if (userCredentials.containsKey(username)) {
-            String storedPassword = userCredentials.get(username);
-            if (storedPassword.length() >= 8 && containsUpperCase(storedPassword) && storedPassword.equals(password)) {
-                return true;
+        if (isUsernameValid(username)) {
+            if (userCredentials.containsKey(username)) {
+                String storedPassword = userCredentials.get(username);
+                if (storedPassword.equals(password)) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    private boolean containsUpperCase(String password) {
-        for (char c : password.toCharArray()) {
-            if (Character.isUpperCase(c)) {
-                return true;
-            }
-        }
-        return false;
+    private boolean isUsernameValid(String username) {
+        return username.contains(".stu.edu") || username.contains(".admin.edu");
     }
 
-    private void openHomePage(Stage stage, String userId) throws MalformedURLException {
+    private void openAdminHomePage(Stage stage, String userId) throws MalformedURLException {
         Home home = new Home();
         home.setUserId(userId); // Set the userId in the Home class
         home.start(stage);
+    }
+
+    private void openStudentHomePage(Stage stage, String userId) throws MalformedURLException {
+        HomeStudent homeStudent = new HomeStudent();
+        homeStudent.setUserId(userId); // Set the userId in the HomeStudent class
+        homeStudent.start(stage);
     }
 
     private void openSignupPage(Stage stage) {
@@ -209,13 +216,13 @@ public class Login extends Application {
                 return;
             }
 
-            if (userCredentials.containsKey(username)) {
-                showErrorDialog("Username already exists");
+            if (!isUsernameValid(username)) {
+                showErrorDialog("Invalid username format. It should contain either '.stu.edu' or '.admin.edu'");
                 return;
             }
 
-            if (password.length() < 8 || !containsUpperCase(password)) {
-                showErrorDialog("Password should be at least 8 characters long and contain at least 1 uppercase letter");
+            if (userCredentials.containsKey(username)) {
+                showErrorDialog("Username already exists");
                 return;
             }
 
