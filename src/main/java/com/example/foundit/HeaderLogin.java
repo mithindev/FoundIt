@@ -15,6 +15,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import com.example.foundit.Contact;
+
 public class HeaderLogin extends Application {
 
     @Override
@@ -75,10 +77,24 @@ public class HeaderLogin extends Application {
         Button button = new Button(buttonText);
         button.setStyle("-fx-background-color: #8b0000; -fx-text-fill: white;");
         button.setOnAction(event -> {
-            System.out.println("Performing action for button: " + buttonText);
+            if (buttonText.equals("Contributions")) {
+                Contributions contributions = new Contributions();
+                Stage stage = new Stage();
+                contributions.start(stage);
+            } else if (buttonText.equals("Contact")) {
+                Contact contact = new Contact();
+                Stage stage = new Stage();
+                contact.start(stage);
+            } else {
+                System.out.println("Performing action for button: " + buttonText);
+            }
         });
         return button;
     }
+
+
+
+
 
     public static void main(String[] args) {
         launch(args);

@@ -19,6 +19,10 @@ public class Contributions extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        // Icon
+        Image icon = new Image("file:///C:/Users/nmary/OneDrive/Desktop/UN%20ORGANISED/ILLUSTRATIONS/logo.jpg");
+        primaryStage.getIcons().add(icon);
+
         GridPane root = new GridPane();
         root.setAlignment(Pos.CENTER);
         root.setHgap(20);
@@ -26,15 +30,14 @@ public class Contributions extends Application {
         root.setPadding(new Insets(20));
         Scene scene = new Scene(root, 800, 700);
 
-        //String - 1
-
+        // String - 1
         String str1 = "CONTRIBUTIONS:\n 1.abcd\n2.abcd";
 
         // Create and add flip cards to the grid pane
-        createFlipCard(root, str1, "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg", 0, 0);
-        createFlipCard(root, "Card 2", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg", 1, 0);
-        createFlipCard(root, "Card 3", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg", 0, 1);
-        createFlipCard(root, "Card 4", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg", 1, 1);
+        createFlipCard(root, str1, "file:///C:/Users/nmary/OneDrive/Desktop/UN%20ORGANISED/ILLUSTRATIONS/1.jpeg", 0, 0);
+        createFlipCard(root, "Card 2", "file:///C:/Users/nmary/OneDrive/Desktop/UN%20ORGANISED/ILLUSTRATIONS/1.jpeg", 1, 0);
+        createFlipCard(root, "Card 3", "file:///C:/Users/nmary/OneDrive/Desktop/UN%20ORGANISED/ILLUSTRATIONS/1.jpeg", 0, 1);
+        createFlipCard(root, "Card 4", "file:///C:/Users/nmary/OneDrive/Desktop/UN%20ORGANISED/ILLUSTRATIONS/1.jpeg", 1, 1);
 
         primaryStage.setTitle("Contributions");
         primaryStage.setScene(scene);

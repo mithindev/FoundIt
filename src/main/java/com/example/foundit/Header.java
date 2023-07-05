@@ -81,6 +81,10 @@ public class Header extends Application {
             String searchText = searchField.getText();
             // Perform search logic with the provided search text
             System.out.println("Performing search for: " + searchText);
+
+            if (searchText.equalsIgnoreCase("Notification")) {
+                openNotificationPage();
+            }
         });
         searchBox.getChildren().add(searchButton);
 
@@ -107,9 +111,7 @@ public class Header extends Application {
         // Adding the notifications section to the header
         Button notificationsButton = createHeaderButton("Notifications", "Notifications.class");
         notificationsButton.setOnAction(event -> {
-            Notification notification = new Notification();
-            notification.start(new Stage());
-            System.out.println("Opening Notifications...");
+            openNotificationPage();
         });
         searchBox.getChildren().add(notificationsButton);
 
@@ -117,6 +119,12 @@ public class Header extends Application {
         header.getChildren().add(searchBox);
 
         return header;
+    }
+
+    private static void openNotificationPage() {
+        Notification notification = new Notification();
+        notification.start(new Stage());
+        System.out.println("Opening Notifications...");
     }
 
     public static Button createHeaderButton(String buttonText, String targetClass) {

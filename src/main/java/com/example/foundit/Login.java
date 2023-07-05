@@ -156,7 +156,22 @@ public class Login extends Application {
     }
 
     private boolean authenticateUser(String username, String password) {
-        return userCredentials.containsKey(username) && userCredentials.get(username).equals(password);
+        if (userCredentials.containsKey(username)) {
+            String storedPassword = userCredentials.get(username);
+            if (storedPassword.length() >= 8 && containsUpperCase(storedPassword) && storedPassword.equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean containsUpperCase(String password) {
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void openHomePage(Stage stage, String userId) throws MalformedURLException {
@@ -196,6 +211,11 @@ public class Login extends Application {
 
             if (userCredentials.containsKey(username)) {
                 showErrorDialog("Username already exists");
+                return;
+            }
+
+            if (password.length() < 8 || !containsUpperCase(password)) {
+                showErrorDialog("Password should be at least 8 characters long and contain at least 1 uppercase letter");
                 return;
             }
 
