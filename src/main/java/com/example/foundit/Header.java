@@ -84,6 +84,10 @@ public class Header extends Application {
 
             if (searchText.equalsIgnoreCase("Notification")) {
                 openNotificationPage();
+            } else if (searchText.equalsIgnoreCase("Contributions")) {
+                openContributionsPage();
+            } else if (searchText.equalsIgnoreCase("Contact")) {
+                openContactPage();
             }
         });
         searchBox.getChildren().add(searchButton);
@@ -91,20 +95,14 @@ public class Header extends Application {
         // Adding the contributions section to the header
         Button contributionsButton = createHeaderButton("Contributions", "Contributions.class");
         contributionsButton.setOnAction(event -> {
-            // Handle contributions button click event
-            Contributions contributions = new Contributions();
-            contributions.start(new Stage());
-            // Open the Contributions class or perform related actions
-            System.out.println("Opening Contributions...");
+            openContributionsPage();
         });
         searchBox.getChildren().add(contributionsButton);
 
         // Adding the contact section to the header
         Button contactButton = createHeaderButton("Contact", "Contact.class");
         contactButton.setOnAction(event -> {
-            // Handle contact button click event
-            // Open the Contact class or perform related actions
-            System.out.println("Opening Contact...");
+            openContactPage();
         });
         searchBox.getChildren().add(contactButton);
 
@@ -125,6 +123,18 @@ public class Header extends Application {
         Notification notification = new Notification();
         notification.start(new Stage());
         System.out.println("Opening Notifications...");
+    }
+
+    private static void openContributionsPage() {
+        Contributions contributions = new Contributions();
+        contributions.start(new Stage());
+        System.out.println("Opening Contributions...");
+    }
+
+    private static void openContactPage() {
+        Contact contact = new Contact();
+        contact.start(new Stage());
+        System.out.println("Opening Contact...");
     }
 
     public static Button createHeaderButton(String buttonText, String targetClass) {

@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -35,12 +36,17 @@ public class ReportLostItem extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Report Lost Item");
 
+        // Set application icon
+        Image icon = new Image("file:C:/Users/nmary/OneDrive/Desktop/UN ORGANISED/ILLUSTRATIONS/logo.jpg");
+        primaryStage.getIcons().add(icon);
+
         // Header
         Label headerLabel = new Label("Report Lost Item");
         headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
         // Footer
         Label footerLabel = new Label("© 2023 FoundIt. All rights reserved.");
+        footerLabel.setStyle("-fx-font-size: 12px;");
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -174,11 +180,13 @@ public class ReportLostItem extends Application {
             }
         });
 
-        Scene scene = new Scene(mainLayout, 780, 550); // Use mainLayout instead of grid
+        Scene scene = new Scene(mainLayout, 780, 550);
 
         // Apply CSS styles to the scene
-        String css = "-fx-font-size: 14px;" +
-                "-fx-background-color: #e9e9e9;";
+        String css = """
+                -fx-font-size: 14px;
+                -fx-background-color: #e9e9e9;
+                """;
         scene.getRoot().setStyle(css);
 
         primaryStage.setScene(scene);
