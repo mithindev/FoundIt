@@ -1,29 +1,23 @@
 package com.example.foundit;
 
 import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Test1 extends Application {
-    private static final String LOST_ITEMS_FILE = "lost_item.txt";
-    private static final String FOUND_ITEMS_FILE = "found_item.txt";
 
-    private ComboBox<String> categoryComboBox;
-    private TableView<Item> tableView;
-    private ObservableList<Item> items;
+    private static final String FOUND_ITEMS_FILE = "found_item.txt"; // File path for found items
+    private static final String LOST_ITEMS_FILE = "lost_item.txt"; // File path for lost items
 
     public static void main(String[] args) {
         launch(args);
@@ -31,197 +25,72 @@ public class Test1 extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // Create the header
-        HBox header = createHeader();
-
-        // Create the refresh button
-        Button refreshButton = new Button("Refresh");
-        refreshButton.setOnAction(e -> refreshTable());
-
-        // Create the center pane
-        VBox centerPane = createCenterPane(refreshButton);
-
-        // Create the footer
-        HBox footer = createFooter();
-
-        // Create the root pane
-        BorderPane root = new BorderPane();
-        root.setTop(header);
-        root.setCenter(centerPane);
-        root.setBottom(footer);
-
-        // Create the scene with the root pane
-        Scene scene = new Scene(root, 800, 600);
-
-        // Set the stage title and scene, then show the stage
         primaryStage.setTitle("Dashboard");
+
+        // Main layout
+        BorderPane mainLayout = new BorderPane();
+        mainLayout.setStyle("-fx-background-color: #f1f1f1;");
+
+        // Header
+        Label headerLabel = new Label("FoundIt - Dashboard");
+        headerLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        headerLabel.setTextFill(Color.WHITE);
+        headerLabel.setPadding(new Insets(20));
+        headerLabel.setBackground(new Background(new BackgroundFill(Color.DARKBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        // Found Items
+        VBox foundItemsBox = createItemBox("Found Items", getItemsFromFile(FOUND_ITEMS_FILE));
+
+        // Lost Items
+        VBox lostItemsBox = createItemBox("Lost Items", getItemsFromFile(LOST_ITEMS_FILE));
+
+        // ScrollPane to contain the item boxes
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setFitToWidth(true);
+        scrollPane.setContent(new HBox(20, foundItemsBox, lostItemsBox));
+        scrollPane.setStyle("-fx-background-color: transparent;");
+
+        // Set the header and scroll pane in the main layout
+        mainLayout.setTop(headerLabel);
+        mainLayout.setCenter(scrollPane);
+        BorderPane.setAlignment(headerLabel, Pos.CENTER);
+
+        Scene scene = new Scene(mainLayout, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        // Initialize the table view
-        initializeTableView();
     }
 
-    private HBox createHeader() {
-        HBox header = new HBox();
-        header.setPadding(new Insets(10));
-        header.setAlignment(Pos.CENTER);
-        Label titleLabel = new Label("Dashboard");
-        titleLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+    private VBox createItemBox(String title, List<String> items) {
+        VBox itemBox = new VBox();
+        itemBox.setPadding(new Insets(20));
+        itemBox.setStyle("-fx-background-color: #f8f8f8;");
+
+        Label titleLabel = new Label(title);
         titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-        header.getChildren().add(titleLabel);
-        return header;
-    }
+        itemBox.getChildren().add(titleLabel);
 
-    // Replace the createCenterPane() method with the following code:
-    private VBox createCenterPane(Button refreshButton) {
-        VBox centerPane = new VBox(10);
-        centerPane.setPadding(new Insets(20));
-
-        // Create the controls box
-        HBox controlsBox = new HBox(10);
-        controlsBox.setAlignment(Pos.CENTER_LEFT);
-        categoryComboBox = new ComboBox<>();
-        categoryComboBox.getItems().addAll("All", "Lost", "Found");
-        categoryComboBox.setValue("All");
-        controlsBox.getChildren().addAll(categoryComboBox, refreshButton);
-
-        // Create the table view
-        tableView = new TableView<>();
-        items = FXCollections.observableArrayList();
-        tableView.setItems(items);
-
-        TableColumn<Item, String> nameColumn = new TableColumn<>("Name");
-        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-
-        TableColumn<Item, String> categoryColumn = new TableColumn<>("Category");
-        categoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategory()));
-
-        TableColumn<Item, String> dateColumn = new TableColumn<>("Date");
-        dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate()));
-
-        TableColumn<Item, String> timeColumn = new TableColumn<>("Time");
-        timeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTime()));
-
-        TableColumn<Item, String> detailsColumn = new TableColumn<>("Details");
-        detailsColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDetails()));
-
-        tableView.getColumns().addAll(nameColumn, categoryColumn, dateColumn, timeColumn, detailsColumn);
-
-        centerPane.getChildren().addAll(controlsBox, tableView);
-        VBox.setVgrow(tableView, javafx.scene.layout.Priority.ALWAYS);
-
-        return centerPane;
-    }
-
-
-    private HBox createFooter() {
-        HBox footer = new HBox();
-        footer.setPadding(new Insets(10));
-        footer.setAlignment(Pos.CENTER);
-        Label footerLabel = new Label("Footer");
-        footerLabel.setTextFill(javafx.scene.paint.Color.WHITE);
-        footer.getChildren().add(footerLabel);
-        return footer;
-    }
-
-    private void initializeTableView() {
-        tableView = new TableView<>();
-        items = FXCollections.observableArrayList();
-        tableView.setItems(items);
-
-        TableColumn<Item, String> nameColumn = new TableColumn<>("Name");
-        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-
-        TableColumn<Item, String> categoryColumn = new TableColumn<>("Category");
-        categoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategory()));
-
-        TableColumn<Item, String> dateColumn = new TableColumn<>("Date");
-        dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate()));
-
-        TableColumn<Item, String> timeColumn = new TableColumn<>("Time");
-        timeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTime()));
-
-        TableColumn<Item, String> detailsColumn = new TableColumn<>("Details");
-        detailsColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDetails()));
-
-        tableView.getColumns().addAll(nameColumn, categoryColumn, dateColumn, timeColumn, detailsColumn);
-
-        refreshTable();
-    }
-
-    private void refreshTable() {
-        String selectedCategory = categoryComboBox.getValue();
-        items.clear();
-
-        try {
-            BufferedReader reader;
-            if (selectedCategory.equals("All")) {
-                reader = new BufferedReader(new FileReader(LOST_ITEMS_FILE));
-                loadItemsFromReader(reader);
-                reader = new BufferedReader(new FileReader(FOUND_ITEMS_FILE));
-                loadItemsFromReader(reader);
-            } else if (selectedCategory.equals("Lost")) {
-                reader = new BufferedReader(new FileReader(LOST_ITEMS_FILE));
-                loadItemsFromReader(reader);
-            } else if (selectedCategory.equals("Found")) {
-                reader = new BufferedReader(new FileReader(FOUND_ITEMS_FILE));
-                loadItemsFromReader(reader);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void loadItemsFromReader(BufferedReader reader) throws IOException {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts.length >= 9) {
-                String name = parts[0].trim();
-                String category = parts[1].trim();
-                String date = parts[2].trim();
-                String time = parts[3].trim();
-                String details = parts[4].trim();
-                Item item = new Item(name, category, date, time, details);
-                items.add(item);
+        if (items.isEmpty()) {
+            Label noItemsLabel = new Label("No items found.");
+            itemBox.getChildren().add(noItemsLabel);
+        } else {
+            for (String item : items) {
+                Label itemLabel = new Label(item);
+                itemBox.getChildren().add(itemLabel);
             }
         }
+
+        return itemBox;
     }
 
-    private static class Item {
-        private final String name;
-        private final String category;
-        private final String date;
-        private final String time;
-        private final String details;
+    private List<String> getItemsFromFile(String filePath) {
+        // Code to read items from the file and return a list of items
+        // For demonstration purposes, returning dummy items
 
-        public Item(String name, String category, String date, String time, String details) {
-            this.name = name;
-            this.category = category;
-            this.date = date;
-            this.time = time;
-            this.details = details;
-        }
+        List<String> items = new ArrayList<>();
+        items.add("Item 1");
+        items.add("Item 2");
+        items.add("Item 3");
 
-        public String getName() {
-            return name;
-        }
-
-        public String getCategory() {
-            return category;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public String getTime() {
-            return time;
-        }
-
-        public String getDetails() {
-            return details;
-        }
+        return items;
     }
 }

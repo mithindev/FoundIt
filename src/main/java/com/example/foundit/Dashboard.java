@@ -1,5 +1,6 @@
 package com.example.foundit;
 
+import com.example.foundit.Item;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,15 +9,16 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Dashboard extends Application {
     private static final String LOST_ITEMS_FILE = "lost_item.txt";
@@ -37,12 +39,26 @@ public class Dashboard extends Application {
 
         // Header
         Label titleLabel = new Label("Lost and Found Dashboard");
-        titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        titleLabel.setTextFill(Color.GREEN);
 
-        VBox headerBox = new VBox(titleLabel);
+        HBox headerBox = new HBox(titleLabel);
+        headerBox.setAlignment(Pos.CENTER);
         headerBox.setPadding(new Insets(20));
         headerBox.setStyle("-fx-background-color: #f4f4f4;");
         root.setTop(headerBox);
+
+        // Footer
+        Label footerLabel = new Label("© 2023 FoundIt. All rights reserved.");
+        footerLabel.setFont(Font.font("Arial", 14));
+        footerLabel.setAlignment(Pos.CENTER);
+        footerLabel.setPadding(new Insets(10));
+        footerLabel.setStyle("-fx-background-color: #f4f4f4;");
+
+        HBox footerBox = new HBox(footerLabel);
+        footerBox.setAlignment(Pos.CENTER);
+        footerBox.setStyle("-fx-background-color: #f4f4f4;");
+        root.setBottom(footerBox);
 
         // Left Sidebar
         VBox sidebarBox = new VBox();
@@ -50,26 +66,23 @@ public class Dashboard extends Application {
         sidebarBox.setSpacing(10);
 
         Button lostItemsButton = new Button("Lost Items");
-        lostItemsButton.setOnAction(event -> {
-            table.setItems(lostItems);
-        });
+        lostItemsButton.setFont(Font.font("Arial", 16));
+        lostItemsButton.setStyle("-fx-background-color: #8BC34A; -fx-text-fill: white;");
+        lostItemsButton.setOnAction(event -> table.setItems(lostItems));
 
         Button foundItemsButton = new Button("Found Items");
-        foundItemsButton.setOnAction(event -> {
-            table.setItems(foundItems);
-        });
+        foundItemsButton.setFont(Font.font("Arial", 16));
+        foundItemsButton.setStyle("-fx-background-color: #8BC34A; -fx-text-fill: white;");
+        foundItemsButton.setOnAction(event -> table.setItems(foundItems));
 
-        Button addNewItemButton = new Button("Add New Item");
-        addNewItemButton.setOnAction(event -> {
-            showAddItemDialog();
-        });
-
-        sidebarBox.getChildren().addAll(lostItemsButton, foundItemsButton, addNewItemButton);
+        sidebarBox.getChildren().addAll(lostItemsButton, foundItemsButton);
         root.setLeft(sidebarBox);
 
         // Center Content
         table = new TableView<>();
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        table.setStyle("-fx-font-size: 14px;");
+
         TableColumn<Item, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         TableColumn<Item, String> descriptionColumn = new TableColumn<>("Description");
@@ -94,82 +107,30 @@ public class Dashboard extends Application {
         stage.setTitle("Dashboard");
         stage.setScene(scene);
         stage.show();
-
-        // Save items to files on application exit
-        stage.setOnCloseRequest(event -> {
-            saveItemsToFile(lostItems, LOST_ITEMS_FILE);
-            saveItemsToFile(foundItems, FOUND_ITEMS_FILE);
-        });
     }
 
     private void loadItemsFromFiles() {
-        lostItems = Item.loadItemsFromFile(LOST_ITEMS_FILE);
-        foundItems = Item.loadItemsFromFile(FOUND_ITEMS_FILE);
+        lostItems = loadItemsFromFile(LOST_ITEMS_FILE);
+        foundItems = loadItemsFromFile(FOUND_ITEMS_FILE);
     }
 
-    private void saveItemsToFile(ObservableList<Item> items, String filename) {
-        Item.saveItemsToFile(items, filename);
-    }
-
-    private void showAddItemDialog() {
-        Dialog<Item> dialog = new Dialog<>();
-        dialog.setTitle("Add New Item");
-        dialog.setHeaderText("Enter item details");
-
-        ButtonType addButton = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
-
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20));
-
-        TextField nameField = new TextField();
-        nameField.setPromptText("Item name");
-
-        TextArea descriptionArea = new TextArea();
-        descriptionArea.setPromptText("Item description");
-
-        DatePicker datePicker = new DatePicker();
-        datePicker.setPromptText("Date");
-
-        TextField locationField = new TextField();
-        locationField.setPromptText("Location");
-
-        TextField contactField = new TextField();
-        contactField.setPromptText("Contact");
-
-        grid.add(new Label("Name:"), 0, 0);
-        grid.add(nameField, 1, 0);
-        grid.add(new Label("Description:"), 0, 1);
-        grid.add(descriptionArea, 1, 1);
-        grid.add(new Label("Date:"), 0, 2);
-        grid.add(datePicker, 1, 2);
-        grid.add(new Label("Location:"), 0, 3);
-        grid.add(locationField, 1, 3);
-        grid.add(new Label("Contact:"), 0, 4);
-        grid.add(contactField, 1, 4);
-
-        dialog.getDialogPane().setContent(grid);
-
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == addButton) {
-                String name = nameField.getText();
-                String description = descriptionArea.getText();
-                LocalDate date = datePicker.getValue();
-                String location = locationField.getText();
-                String contact = contactField.getText();
-
-                return new Item(name, description, date, location, contact);
+    private ObservableList<Item> loadItemsFromFile(String filename) {
+        ObservableList<Item> items = FXCollections.observableArrayList();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                String name = data[0].trim();
+                String description = data[1].trim();
+                LocalDate date = LocalDate.parse(data[2].trim());
+                String location = data[3].trim();
+                String contact = data[4].trim();
+                items.add(new Item(name, description, date, location, contact));
             }
-            return null;
-        });
-
-        dialog.showAndWait().ifPresent(item -> {
-            lostItems.add(item);
-            table.setItems(lostItems);
-            saveItemsToFile(lostItems, LOST_ITEMS_FILE);
-        });
+        } catch (IOException e) {
+            System.err.println("Error reading items from file: " + e.getMessage());
+        }
+        return items;
     }
 
     public static void main(String[] args) {

@@ -58,7 +58,7 @@ public class ReportLostItem extends Application {
         grid.setStyle("-fx-background-color: #f1f1f1;");
 
         // Item Description
-        Label descriptionLabel = new Label("Item Description:");
+        Label descriptionLabel = new Label("Item Name:");
         TextField descriptionField = new TextField();
         grid.add(descriptionLabel, 0, 0);
         grid.add(descriptionField, 1, 0);
@@ -71,7 +71,7 @@ public class ReportLostItem extends Application {
         grid.add(categoryComboBox, 1, 1);
 
         // Date and Time of Losing
-        Label dateTimeLabel = new Label("Date and Time of Losing:");
+        Label dateTimeLabel = new Label("Date and Time:");
         DatePicker datePicker = new DatePicker();
         TextField timeField = new TextField();
         timeField.setPromptText("HH:mm");

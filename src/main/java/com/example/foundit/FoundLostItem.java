@@ -1,6 +1,7 @@
 package com.example.foundit;
 
 import javafx.application.Application;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -33,85 +34,71 @@ public class FoundLostItem extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Report Found Item");
 
+        // Main layout
+        BorderPane mainLayout = new BorderPane();
+        mainLayout.setStyle("-fx-background-color: #f1f1f1;");
+
         // Header
         Label headerLabel = new Label("Found Item Report");
         headerLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
-
-        VBox headerBox = new VBox(headerLabel);
-        headerBox.setAlignment(Pos.CENTER);
-        headerBox.setPadding(new Insets(10));
-        headerBox.setStyle("-fx-background-color: #f1f1f1;");
+        BorderPane.setMargin(headerLabel, new Insets(10));
 
         // Footer
         Label footerLabel = new Label("© 2023 FoundIt App. All rights reserved.");
         footerLabel.setStyle("-fx-font-size: 12px;");
+        BorderPane.setMargin(footerLabel, new Insets(10));
 
-        VBox footerBox = new VBox(footerLabel);
-        footerBox.setAlignment(Pos.CENTER);
-        footerBox.setPadding(new Insets(10));
-        footerBox.setStyle("-fx-background-color: #f1f1f1;");
-
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25));
-
-        // Apply CSS styles to the grid
-        grid.setStyle("-fx-background-color: #f1f1f1;");
+        // Form
+        GridPane formGrid = new GridPane();
+        formGrid.setAlignment(Pos.CENTER);
+        formGrid.setHgap(10);
+        formGrid.setVgap(10);
+        formGrid.setPadding(new Insets(25));
 
         // Item Description
-        Label descriptionLabel = new Label("Item Description:");
+        Label descriptionLabel = new Label("Item Name:");
         TextField descriptionField = new TextField();
-        grid.add(descriptionLabel, 0, 0);
-        grid.add(descriptionField, 1, 0);
+        descriptionField.setStyle("-fx-prompt-text-fill: #808080;");
+        formGrid.add(descriptionLabel, 0, 0);
+        formGrid.add(descriptionField, 1, 0);
 
         // Item Category
         Label categoryLabel = new Label("Item Category:");
         ComboBox<String> categoryComboBox = new ComboBox<>();
         categoryComboBox.getItems().addAll("Electronics", "Accessories", "Books", "Clothing");
-        grid.add(categoryLabel, 0, 1);
-        grid.add(categoryComboBox, 1, 1);
+        formGrid.add(categoryLabel, 0, 1);
+        formGrid.add(categoryComboBox, 1, 1);
 
         // Date and Time of Losing
-        Label dateTimeLabel = new Label("Date and Time of Losing:");
+        Label dateTimeLabel = new Label("Date and Time of Finding:");
         DatePicker datePicker = new DatePicker();
         TextField timeField = new TextField();
         timeField.setPromptText("HH:mm");
         HBox dateTimeBox = new HBox(10);
         dateTimeBox.getChildren().addAll(datePicker, timeField);
-        grid.add(dateTimeLabel, 0, 2);
-        grid.add(dateTimeBox, 1, 2);
+        formGrid.add(dateTimeLabel, 0, 2);
+        formGrid.add(dateTimeBox, 1, 2);
 
         // Location of Losing
-        Label locationLabel = new Label("Location of Losing:");
+        Label locationLabel = new Label("Location of Finding:");
         TextField locationField = new TextField();
-        grid.add(locationLabel, 0, 3);
-        grid.add(locationField, 1, 3);
-
-        // Contact Information
-        Label contactLabel = new Label("Contact Information:");
-        TextField fullNameField = new TextField();
-        fullNameField.setPromptText("Full Name");
-        TextField phoneField = new TextField();
-        phoneField.setPromptText("Phone Number");
-        TextField emailField = new TextField();
-        emailField.setPromptText("Email Address");
-        grid.add(contactLabel, 0, 4);
-        grid.add(fullNameField, 1, 4);
-        grid.add(phoneField, 1, 5);
-        grid.add(emailField, 1, 6);
+        locationField.setStyle("-fx-prompt-text-fill: #808080;");
+        formGrid.add(locationLabel, 0, 3);
+        formGrid.add(locationField, 1, 3);
 
         // Additional Details
         Label additionalDetailsLabel = new Label("Additional Details:");
         TextArea additionalDetailsArea = new TextArea();
         additionalDetailsArea.setPrefRowCount(3);
-        grid.add(additionalDetailsLabel, 0, 7);
-        grid.add(additionalDetailsArea, 1, 7);
+        additionalDetailsArea.setStyle("-fx-prompt-text-fill: #808080;");
+        formGrid.add(additionalDetailsLabel, 0, 4);
+        formGrid.add(additionalDetailsArea, 1, 4);
 
         // Submit Button
         Button submitButton = new Button("Submit");
-        grid.add(submitButton, 1, 8);
+        submitButton.setStyle("-fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: #4CAF50;");
+        formGrid.add(submitButton, 1, 5);
+        GridPane.setHalignment(submitButton, HPos.RIGHT);
 
         // Submit Button Action
         submitButton.setOnAction(e -> {
@@ -121,15 +108,11 @@ public class FoundLostItem extends Application {
             String date = datePicker.getValue().toString();
             String time = timeField.getText();
             String location = locationField.getText();
-            String fullName = fullNameField.getText();
-            String phone = phoneField.getText();
-            String email = emailField.getText();
             String additionalDetails = additionalDetailsArea.getText();
 
-            // Save the entered details to the lost items file
+            // Save the entered details to the found items file
             try (FileWriter writer = new FileWriter(FOUND_ITEMS_FILE, true)) {
-                writer.write(description + "," + category + "," + date + "," + time + "," + location + "," +
-                        fullName + "," + phone + "," + email + "," + additionalDetails);
+                writer.write(description + "," + category + "," + date + "," + time + "," + location + "," + additionalDetails);
                 writer.write(System.lineSeparator());
                 writer.flush();
             } catch (IOException ex) {
@@ -138,7 +121,7 @@ public class FoundLostItem extends Application {
 
             System.out.println("Details saved successfully!");
 
-            // Check for a match in the found items file
+            // Check for a match in the lost items file
             boolean matchFound = false;
             try (BufferedReader reader = new BufferedReader(new FileReader(LOST_ITEMS_FILE))) {
                 String line;
@@ -169,15 +152,13 @@ public class FoundLostItem extends Application {
             }
         });
 
-        // Main layout
-        BorderPane mainLayout = new BorderPane();
-        mainLayout.setTop(headerBox);
-        mainLayout.setCenter(grid);
-        mainLayout.setBottom(footerBox);
-        mainLayout.setAlignment(headerBox, Pos.CENTER);
-        mainLayout.setAlignment(footerBox, Pos.CENTER);
-        mainLayout.setPadding(new Insets(10));
-        mainLayout.setStyle("-fx-background-color: #e9e9e9;");
+        // Set the header, form, and footer in the main layout
+        mainLayout.setTop(headerLabel);
+        mainLayout.setCenter(formGrid);
+        mainLayout.setBottom(footerLabel);
+        BorderPane.setAlignment(headerLabel, Pos.CENTER);
+        BorderPane.setAlignment(footerLabel, Pos.CENTER);
+        BorderPane.setMargin(formGrid, new Insets(10));
 
         Scene scene = new Scene(mainLayout, 800, 570);
 
