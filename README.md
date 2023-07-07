@@ -1,6 +1,6 @@
 # FoundIt
 
-🔍 ![FoundIt Logo](https://github.com/mithindev/FoundIt/INSIGHTS/1.jpeg) 🔍
+🔍 ![FoundIt Logo](https://github.com/mithindev/FoundIt/blob/main/INSIGHTS/1.jpeg) 🔍
 
 FoundIt is a web-based application that helps users report lost items and match them with found items. It provides a platform for users to submit information about lost items, search for found items, and receive notifications when a match is found.
 
