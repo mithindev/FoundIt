@@ -155,6 +155,9 @@ public class FoundLostItem extends Application {
             } else {
                 System.out.println("No match found!");
             }
+
+            // Close the page
+            primaryStage.close();
         });
 
         // Set the header, form, and footer in the main layout

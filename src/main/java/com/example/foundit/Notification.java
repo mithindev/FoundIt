@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -147,6 +148,12 @@ public class Notification extends Application {
         notificationPane.setStyle("-fx-background-color: #f8f8f8; -fx-border-color: #dddddd; -fx-border-width: 1px;");
         notificationPane.setMaxWidth(Double.MAX_VALUE); // Expand to fill available width
 
+        // Create an icon image
+        Image iconImage = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+        ImageView iconImageView = new ImageView(iconImage);
+        iconImageView.setFitWidth(20);
+        iconImageView.setFitHeight(20);
+
         // Create a label for each notification
         for (String notification : notifications) {
             HBox notificationBox = new HBox(10);
@@ -156,7 +163,11 @@ public class Notification extends Application {
                 notificationPane.getChildren().remove(notificationBox);
                 removeNotificationFromUser(userId, notification);
             });
-            notificationBox.getChildren().addAll(notificationLabel, dismissButton);
+            notificationBox.getChildren().addAll(iconImageView, notificationLabel, dismissButton);
+            notificationBox.setAlignment(Pos.CENTER_LEFT);
+            notificationBox.setSpacing(10);
+            notificationBox.setPadding(new Insets(5));
+            notificationBox.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
             notificationPane.getChildren().add(notificationBox);
         }
 

@@ -18,8 +18,12 @@
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/found_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/found_item.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lost_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lost_item.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notification.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/FoundLostItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/FoundLostItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/users.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
@@ -94,9 +98,9 @@
       <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FoundLostItem">
-    <configuration name="FoundLostItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.FoundLostItem" />
+  <component name="RunManager" selected="Application.About">
+    <configuration name="About" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.About" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -108,8 +112,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HeaderLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.HeaderLogin" />
+    <configuration name="FoundLostItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.FoundLostItem" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -134,8 +138,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReportLostItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.ReportLostItem" />
+    <configuration name="Notification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Notification" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -147,8 +151,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test3" />
+    <configuration name="Test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test2" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -162,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.About" />
         <item itemvalue="Application.FoundLostItem" />
-        <item itemvalue="Application.HeaderLogin" />
-        <item itemvalue="Application.ReportLostItem" />
-        <item itemvalue="Application.Test3" />
         <item itemvalue="Application.Login" />
+        <item itemvalue="Application.Test2" />
+        <item itemvalue="Application.Notification" />
       </list>
     </recent_temporary>
   </component>
@@ -207,7 +211,7 @@
       <workItem from="1688581862379" duration="1611000" />
       <workItem from="1688630274148" duration="35000" />
       <workItem from="1688701695468" duration="391000" />
-      <workItem from="1688702485444" duration="1004000" />
+      <workItem from="1688702485444" duration="2307000" />
     </task>
     <servers />
   </component>

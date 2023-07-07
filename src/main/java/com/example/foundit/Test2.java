@@ -1,28 +1,27 @@
 package com.example.foundit;
 
-import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Test2 extends Application {
-    private static final Duration NOTIFICATION_DURATION = Duration.seconds(5);
+    private String userIdFinal;
+    private static final String NOTIFICATION_FILE = "notification.txt";
 
-    private static List<NotificationPane> notifications;
-    private static VBox notificationContainer;
+    public void setUserId(String userId) {
+        this.userIdFinal = userId;
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -30,39 +29,45 @@ public class Test2 extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        notifications = new ArrayList<>();
+        // Set application icon
+        Image icon = new Image("file:C:/Users/nmary/OneDrive/Desktop/UN ORGANISED/ILLUSTRATIONS/logo.jpg");
+        primaryStage.getIcons().add(icon);
 
-        // Create the notification container
-        notificationContainer = new VBox(10);
-        notificationContainer.setAlignment(Pos.TOP_RIGHT);
-        notificationContainer.setPadding(new Insets(20));
-        notificationContainer.setStyle("-fx-background-color: #f8f8f8;");
+        // Create the header
+        HBox header = createHeader();
 
-        // Create a sample notification
-        createNotification("Success", "We Found a match!", () -> {
-            // Action performed when the button is clicked
-            System.out.println("Notification action performed!");
-        });
+        // Create the footer
+        HBox footer = createFooter();
+
+        // Load and display notifications for a sample user ID
+        String userId = userIdFinal;
+        List<String> notifications = getNotificationsForUser(userId);
+        if (notifications.isEmpty()) {
+            showNoNotificationsAlert();
+        } else {
+            showNotification("Notification", String.join("\n", notifications));
+        }
 
         // Create the left-side image view
-        Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(400); // Adjust the width as desired
-        imageView.setFitHeight(300); // Adjust the height as desired
+        ImageView imageView = createImageView();
 
-        // Create the right-side pane for the image view and notifications
-        StackPane rightPane = new StackPane(imageView, notificationContainer);
+        // Create the right-side pane for the notifications
+        VBox notificationPane = createNotificationPane(userId, notifications);
 
         // Create the split pane and set its orientation and division ratio
-        SplitPane splitPane = new SplitPane();
-        splitPane.setOrientation(javafx.geometry.Orientation.HORIZONTAL);
-        splitPane.setDividerPositions(0.5);
+        SplitPane splitPane = createSplitPane(imageView, notificationPane);
 
-        // Add the image view and right pane to the split pane
-        splitPane.getItems().addAll(imageView, rightPane);
+        // Create the root pane
+        BorderPane root = new BorderPane();
+        root.setTop(header);
+        root.setCenter(splitPane);
+        root.setBottom(footer);
 
-        // Create the scene with the split pane as its root
-        Scene scene = new Scene(splitPane, 800, 600);
+        // Create the scene with the root pane
+        Scene scene = new Scene(root, 800, 600);
+
+        // Apply embedded styles
+        scene.getRoot().setStyle("-fx-font-family: Arial;");
 
         // Set the stage title and scene, then show the stage
         primaryStage.setTitle("Notification");
@@ -70,78 +75,143 @@ public class Test2 extends Application {
         primaryStage.show();
     }
 
-    public static void createNotification(String title, String message, Runnable action) {
-
-        // Create the notification
-        NotificationPane notification = new NotificationPane(title, message, action);
-        notifications.add(notification);
-        notificationContainer.getChildren().add(notification);
-
-        // Apply fade-in animation
-        FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notification);
-        fadeInTransition.setFromValue(0);
-        fadeInTransition.setToValue(1);
-        fadeInTransition.play();
-
+    private HBox createHeader() {
+        HBox header = new HBox();
+        header.setPadding(new Insets(10));
+        header.setAlignment(Pos.CENTER);
+        Label titleLabel = new Label("Notifications");
+        titleLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+        header.getChildren().add(titleLabel);
+        header.setStyle("-fx-background-color: #333333;");
+        return header;
     }
 
-    static class NotificationPane extends VBox {
-        private static final int NOTIFICATION_WIDTH = 300;
-        private static final int NOTIFICATION_HEIGHT = 80;
-        private static final int ICON_SIZE = 24;
-
-        public NotificationPane(String title, String message, Runnable action) {
-            setPrefSize(NOTIFICATION_WIDTH, NOTIFICATION_HEIGHT);
-            setMaxSize(NOTIFICATION_WIDTH, NOTIFICATION_HEIGHT);
-            setStyle("-fx-background-color: #ffffff; -fx-border-color: #c0c0c0; -fx-border-width: 1px;");
-
-            Label titleLabel = new Label(title);
-            titleLabel.setStyle("-fx-font-weight: bold;");
-            Label messageLabel = new Label(message);
-
-            HBox content = new HBox(10);
-            content.setAlignment(Pos.CENTER_LEFT);
-            content.setPadding(new Insets(10));
-            content.getChildren().addAll(createIcon(), titleLabel, messageLabel, createActionButton(action));
-
-            getChildren().add(content);
-        }
-
-        private ImageView createIcon() {
-            ImageView imageView = new ImageView();
-            imageView.setFitWidth(ICON_SIZE);
-            imageView.setFitHeight(ICON_SIZE);
-
-            Image image1 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-
-            return imageView;
-        }
-
-        private Button createActionButton(Runnable action) {
-            Button actionButton = new Button("Dismiss");
-            actionButton.setStyle("-fx-background-color: #a3113e; -fx-text-fill: white;");
-            actionButton.setOnAction(event -> {
-                action.run();
-                closeNotification();
-            });
-
-            return actionButton;
-        }
-
-        private void closeNotification() {
-            FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), this);
-            fadeOutTransition.setFromValue(1);
-            fadeOutTransition.setToValue(0);
-            fadeOutTransition.setOnFinished(event -> {
-                Pane parentContainer = (Pane) getParent();
-                parentContainer.getChildren().remove(this);
-            });
-            fadeOutTransition.play();
-        }
+    private HBox createFooter() {
+        HBox footer = new HBox();
+        footer.setPadding(new Insets(10));
+        footer.setAlignment(Pos.CENTER);
+        Label footerLabel = new Label("© 2023 FoundIt");
+        footerLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        footerLabel.setStyle("-fx-font-size: 14px;");
+        footer.getChildren().add(footerLabel);
+        footer.setStyle("-fx-background-color: #333333;");
+        return footer;
     }
 
+    private List<String> getNotificationsForUser(String userId) {
+        List<String> notifications = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(NOTIFICATION_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+                if (parts.length >= 2 && parts[0].trim().equals(userId)) {
+                    String notification = parts[1].trim();
+                    notifications.add(notification);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return notifications;
+    }
 
-    public static void display(String title, String message, Runnable action) {
-        createNotification(title, message, action);
+    private void showNoNotificationsAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Notifications");
+        alert.setHeaderText(null);
+        alert.setContentText("No notifications found for the current user.");
+        alert.showAndWait();
+    }
+
+    private void showNotification(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private ImageView createImageView() {
+        ImageView imageView = null;
+        Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+        imageView = new ImageView(image);
+        imageView.setFitWidth(400); // Adjust the width as desired
+        imageView.setFitHeight(300); // Adjust the height as desired
+        return imageView;
+    }
+
+    private VBox createNotificationPane(String userId, List<String> notifications) {
+        VBox notificationPane = new VBox(10);
+        notificationPane.setPadding(new Insets(20));
+        notificationPane.setAlignment(Pos.TOP_LEFT);
+        notificationPane.setStyle("-fx-background-color: #f8f8f8; -fx-border-color: #dddddd; -fx-border-width: 1px;");
+        notificationPane.setMaxWidth(Double.MAX_VALUE); // Expand to fill available width
+
+        // Create an icon image
+        Image iconImage = new Image("file:C:/path/to/icon.png");
+        ImageView iconImageView = new ImageView(iconImage);
+        iconImageView.setFitWidth(20);
+        iconImageView.setFitHeight(20);
+
+        // Create a label for each notification
+        for (String notification : notifications) {
+            HBox notificationBox = new HBox(10);
+            Label notificationLabel = new Label(notification);
+            Button dismissButton = new Button("Dismiss");
+            dismissButton.setOnAction(e -> {
+                notificationPane.getChildren().remove(notificationBox);
+                removeNotificationFromUser(userId, notification);
+            });
+            notificationBox.getChildren().addAll(iconImageView, notificationLabel, dismissButton);
+            notificationBox.setAlignment(Pos.CENTER_LEFT);
+            notificationBox.setSpacing(10);
+            notificationBox.setPadding(new Insets(5));
+            notificationBox.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            notificationPane.getChildren().add(notificationBox);
+        }
+
+        return notificationPane;
+    }
+
+    private SplitPane createSplitPane(ImageView imageView, VBox notificationPane) {
+        SplitPane splitPane = new SplitPane();
+        splitPane.setOrientation(javafx.geometry.Orientation.HORIZONTAL);
+        splitPane.setDividerPositions(0.5);
+        splitPane.getItems().addAll(imageView, notificationPane);
+        return splitPane;
+    }
+
+    private void removeNotificationFromUser(String userId, String notification) {
+        try {
+            File inputFile = new File(NOTIFICATION_FILE);
+            File tempFile = new File(NOTIFICATION_FILE + ".tmp");
+
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+            String lineToRemove = userId + ": " + notification;
+            String currentLine;
+
+            while ((currentLine = reader.readLine()) != null) {
+                String trimmedLine = currentLine.trim();
+                if (!trimmedLine.equals(lineToRemove)) {
+                    writer.write(currentLine + System.lineSeparator());
+                }
+            }
+
+            writer.close();
+            reader.close();
+
+            if (inputFile.delete()) {
+                if (!tempFile.renameTo(inputFile)) {
+                    throw new IOException("Could not rename the temporary file to the original file");
+                }
+            } else {
+                throw new IOException("Could not delete the original file");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

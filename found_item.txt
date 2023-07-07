@@ -2,3 +2,6 @@ fwhjf,Electronics,2023-07-01,10:52,fwhjf,fwhjffwhjf
 fwhjf,Electronics,2023-07-01,10:52,fwhjf,fwhjffwhjf
 fwhjf,Electronics,2023-07-01,10:52,fwhjf,fwhjffwhjf
 fwhjf,Electronics,2023-07-01,10:52,fwhjf,fwhjffwhjf
+abcd,Electronics,2023-07-07,10:10,iiejdijdi,dededed
+abcd,Electronics,2023-07-07,10:10,iiejdijdi,dededed
+ewewe,Electronics,2023-07-08,10:10,wewew,ewewe
