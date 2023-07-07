@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -34,6 +35,10 @@ public class FoundLostItem extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Report Found Item");
 
+        //icon
+        Image icon = new Image("file:C:/Users/nmary/OneDrive/Desktop/UN ORGANISED/ILLUSTRATIONS/logo.jpg");
+        primaryStage.getIcons().add(icon);
+
         // Main layout
         BorderPane mainLayout = new BorderPane();
         mainLayout.setStyle("-fx-background-color: #f1f1f1;");
@@ -58,7 +63,7 @@ public class FoundLostItem extends Application {
         // Item Description
         Label descriptionLabel = new Label("Item Name:");
         TextField descriptionField = new TextField();
-        descriptionField.setStyle("-fx-prompt-text-fill: #808080;");
+        descriptionField.setPromptText("Enter item name");
         formGrid.add(descriptionLabel, 0, 0);
         formGrid.add(descriptionField, 1, 0);
 
@@ -69,7 +74,7 @@ public class FoundLostItem extends Application {
         formGrid.add(categoryLabel, 0, 1);
         formGrid.add(categoryComboBox, 1, 1);
 
-        // Date and Time of Losing
+        // Date and Time of Finding
         Label dateTimeLabel = new Label("Date and Time of Finding:");
         DatePicker datePicker = new DatePicker();
         TextField timeField = new TextField();
@@ -79,18 +84,18 @@ public class FoundLostItem extends Application {
         formGrid.add(dateTimeLabel, 0, 2);
         formGrid.add(dateTimeBox, 1, 2);
 
-        // Location of Losing
+        // Location of Finding
         Label locationLabel = new Label("Location of Finding:");
         TextField locationField = new TextField();
-        locationField.setStyle("-fx-prompt-text-fill: #808080;");
+        locationField.setPromptText("Enter location");
         formGrid.add(locationLabel, 0, 3);
         formGrid.add(locationField, 1, 3);
 
         // Additional Details
         Label additionalDetailsLabel = new Label("Additional Details:");
         TextArea additionalDetailsArea = new TextArea();
+        additionalDetailsArea.setPromptText("Enter additional details");
         additionalDetailsArea.setPrefRowCount(3);
-        additionalDetailsArea.setStyle("-fx-prompt-text-fill: #808080;");
         formGrid.add(additionalDetailsLabel, 0, 4);
         formGrid.add(additionalDetailsArea, 1, 4);
 
@@ -163,7 +168,11 @@ public class FoundLostItem extends Application {
         Scene scene = new Scene(mainLayout, 800, 570);
 
         // Apply CSS styles to the scene
-        String css = "-fx-font-size: 14px;";
+        String css = """
+                -fx-font-size: 14px;
+                -fx-control-inner-background: #ffffff;
+                -fx-prompt-text-fill: #808080;
+                """;
         scene.getRoot().setStyle(css);
 
         primaryStage.setScene(scene);

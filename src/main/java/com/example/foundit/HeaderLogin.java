@@ -21,6 +21,9 @@ public class HeaderLogin extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        Image icon = new Image("file:C:/Users/nmary/OneDrive/Desktop/UN ORGANISED/ILLUSTRATIONS/logo.jpg");
+        primaryStage.getIcons().add(icon);
+
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 800, 600);
 

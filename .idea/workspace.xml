@@ -18,6 +18,9 @@
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lost_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lost_item.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Test3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/users.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
@@ -91,35 +94,22 @@
       <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Contact">
-    <configuration name="Contact" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Contact" />
-      <module name="FoundIt" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.foundit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Dashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Dashboard" />
-      <module name="FoundIt" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.foundit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.FoundLostItem">
     <configuration name="FoundLostItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.foundit.FoundLostItem" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HeaderLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.HeaderLogin" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -144,8 +134,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test1" />
+    <configuration name="ReportLostItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.ReportLostItem" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Test3" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -159,11 +162,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Contact" />
-        <item itemvalue="Application.Login" />
-        <item itemvalue="Application.Dashboard" />
-        <item itemvalue="Application.Test1" />
         <item itemvalue="Application.FoundLostItem" />
+        <item itemvalue="Application.HeaderLogin" />
+        <item itemvalue="Application.ReportLostItem" />
+        <item itemvalue="Application.Test3" />
+        <item itemvalue="Application.Login" />
       </list>
     </recent_temporary>
   </component>
@@ -203,6 +206,8 @@
       <workItem from="1688580194169" duration="974000" />
       <workItem from="1688581862379" duration="1611000" />
       <workItem from="1688630274148" duration="35000" />
+      <workItem from="1688701695468" duration="391000" />
+      <workItem from="1688702485444" duration="1004000" />
     </task>
     <servers />
   </component>

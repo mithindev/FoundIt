@@ -137,6 +137,18 @@ public class ReportLostItem extends Application {
             String email = emailField.getText();
             String additionalDetails = additionalDetailsArea.getText();
 
+            // Validate phone number
+            if (!phone.matches("\\d{10}")) {
+                showAlert("Invalid phone number");
+                return;
+            }
+
+            // Validate email
+            if (!isValidEmail(email)) {
+                showAlert("Invalid email address");
+                return;
+            }
+
             // Save the entered details to the lost items file
             try (FileWriter writer = new FileWriter(LOST_ITEMS_FILE, true)) {
                 writer.write(description + "," + category + "," + date + "," + time + "," + location + "," +
@@ -178,6 +190,9 @@ public class ReportLostItem extends Application {
             } else {
                 System.out.println("No match found!");
             }
+
+            // Close the page
+            primaryStage.close();
         });
 
         Scene scene = new Scene(mainLayout, 780, 550);
@@ -191,5 +206,18 @@ public class ReportLostItem extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(emailRegex);
     }
 }
