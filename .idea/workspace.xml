@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5ab36ac-b660-4356-8437-051f4c839529" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../PageRankAlgorithm/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CURRENT PROJECTS/FountIt/.idea/encodings.xml" beforeDir="false" />
@@ -17,7 +18,8 @@
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/COLLEGE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEARNING DSA" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/MY RESEARCH/LUAD_Differential_Methylation_All_Table.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
@@ -64,35 +66,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/nmary/OneDrive/Desktop/FoundIt/src/main/java/com/example/foundit",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nmary/OneDrive/Desktop/FoundIt/src/main/java/com/example/foundit&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.About">
+  <component name="RunManager" selected="Application.Login">
     <configuration name="About" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.foundit.About" />
       <module name="FoundIt" />
@@ -160,9 +162,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Login" />
         <item itemvalue="Application.About" />
         <item itemvalue="Application.FoundLostItem" />
-        <item itemvalue="Application.Login" />
         <item itemvalue="Application.Test2" />
         <item itemvalue="Application.Notification" />
       </list>
@@ -205,7 +207,8 @@
       <workItem from="1688581862379" duration="1611000" />
       <workItem from="1688630274148" duration="35000" />
       <workItem from="1688701695468" duration="391000" />
-      <workItem from="1688702485444" duration="2863000" />
+      <workItem from="1688702485444" duration="3915000" />
+      <workItem from="1688805167247" duration="54000" />
     </task>
     <servers />
   </component>
