@@ -1,0 +1,44 @@
+@startuml
+
+class Notification {
+  - userIdFinal: String
+  + setUserId(userId: String)
+  + main(args: String[])
+  + start(primaryStage: Stage)
+  + createHeader(): HBox
+  + createFooter(): HBox
+  + getNotificationsForUser(userId: String): List<String>
+  + showNoNotificationsAlert()
+  + showNotification(title: String, message: String)
+  + createImageView(): ImageView
+  + createNotificationPane(userId: String, notifications: List<String>): VBox
+  + createSplitPane(imageView: ImageView, notificationPane: VBox): SplitPane
+  + removeNotificationFromUser(userId: String, notification: String)
+}
+
+' Notification --> Application
+' Notification "1" *-- "1" Stage
+' Notification "1" *-- "1" HBox
+' Notification "1" *-- "1" Image
+' Notification "1" *-- "1" ImageView
+' Notification "1" *-- "1" BorderPane
+' Notification "1" *-- "1" VBox
+' Notification "1" *-- "1" List
+' Notification "1" *-- "1" Alert
+' Notification "1" *-- "1" Label
+' Notification "1" *-- "1" Button
+' Notification "1" *-- "1" SplitPane
+' Notification "1" *-- "1" Image
+' Notification "1" *-- "1" File
+' Notification "1" *-- "1" BufferedReader
+' Notification "1" *-- "1" FileWriter
+' Notification "1" *-- "1" BufferedWriter
+' Notification "1" *-- "1" IOException
+' Notification "1" *-- "1" Color
+' Notification "1" *-- "1" Border
+' Notification "1" *-- "1" BorderStroke
+' Notification "1" *-- "1" CornerRadii
+' Notification "1" *-- "1" BorderWidths
+' Notification "1" *-- "1" Insets
+
+@enduml

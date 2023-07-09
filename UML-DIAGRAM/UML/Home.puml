@@ -1,0 +1,63 @@
+@startuml
+
+class Home {
+  - primaryStage: Stage
+  - userId: String
+  + setUserId(userId: String)
+  + start(primaryStage: Stage)
+  + createButton(text: String): Button
+  + showNotification()
+  + showReportLostItem()
+  + showSubmitFoundItem()
+  + showDashboard()
+}
+
+class Header {
+  + createHeader(): HBox
+}
+
+class Footer {
+  + createFooter(): HBox
+}
+
+class Notification {
+  - userId: String
+  + setUserId(userId: String)
+  + start(stage: Stage)
+}
+
+class ReportLostItem {
+  - userId: String
+  + setUserId(userId: String)
+  + start(stage: Stage)
+}
+
+class FoundLostItem {
+  - userId: String
+  + setUserId(userId: String)
+  + start(stage: Stage)
+}
+
+class Dashboard {
+  + start(stage: Stage)
+}
+
+' Home --> Application
+' Home "1" *-- "1" Stage
+' Home "1" *-- "1" Header
+' Home "1" *-- "1" Footer
+' Home "1" *-- "1" BorderPane
+' Home "1" *-- "1" HBox
+' Home "1" *-- "1" Button
+' Home "1" *-- "1" Scene
+' Home "1" *-- "1" Notification
+' Home "1" *-- "1" ReportLostItem
+' Home "1" *-- "1" FoundLostItem
+' Home "1" *-- "1" Dashboard
+
+Notification --> Stage
+ReportLostItem --> Stage
+FoundLostItem --> Stage
+Dashboard --> Stage
+
+@enduml

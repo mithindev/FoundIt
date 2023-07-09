@@ -1,0 +1,36 @@
+@startuml
+
+class ReportLostItem {
+  - userId: String
+  + setUserId(userId: String)
+  + main(args: String[])
+  + start(primaryStage: Stage)
+  + showAlert(message: String)
+  + isValidEmail(email: String): boolean
+}
+
+' ReportLostItem --> Application
+' ReportLostItem "1" *-- "1" Stage
+' ReportLostItem "1" *-- "1" Label
+' ReportLostItem "1" *-- "1" Image
+' ReportLostItem "1" *-- "1" GridPane
+' ReportLostItem "1" *-- "1" Pos
+' ReportLostItem "1" *-- "1" Insets
+' ReportLostItem "1" *-- "1" Scene
+' ReportLostItem "1" *-- "1" TextField
+' ReportLostItem "1" *-- "1" ComboBox
+' ReportLostItem "1" *-- "1" DatePicker
+' ReportLostItem "1" *-- "1" HBox
+' ReportLostItem "1" *-- "1" VBox
+' ReportLostItem "1" *-- "1" Button
+' ReportLostItem "1" *-- "1" TextArea
+' ReportLostItem "1" *-- "1" FileWriter
+' ReportLostItem "1" *-- "1" IOException
+' ReportLostItem "1" *-- "1" FileReader
+' ReportLostItem "1" *-- "1" BufferedReader
+' ReportLostItem "1" *-- "1" Image
+' ReportLostItem "1" *-- "1" Insets
+' ReportLostItem "1" *-- "1" Color
+' ReportLostItem "1" *-- "1" VBox
+
+@enduml

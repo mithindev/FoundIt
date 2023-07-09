@@ -151,8 +151,8 @@ public class ReportLostItem extends Application {
 
             // Save the entered details to the lost items file
             try (FileWriter writer = new FileWriter(LOST_ITEMS_FILE, true)) {
-                writer.write(description + "," + category + "," + date + "," + time + "," + location + "," +
-                        fullName + "," + phone + "," + email + "," + additionalDetails);
+                writer.write(description + "," + category + "," + date + "," + time + "," + location + ","
+                        + fullName + "," + phone + "," + email + "," + additionalDetails + "," + userId);
                 writer.write(System.lineSeparator());
                 writer.flush();
             } catch (IOException ex) {

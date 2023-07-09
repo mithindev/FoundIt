@@ -117,7 +117,8 @@ public class FoundLostItem extends Application {
 
             // Save the entered details to the found items file
             try (FileWriter writer = new FileWriter(FOUND_ITEMS_FILE, true)) {
-                writer.write(description + "," + category + "," + date + "," + time + "," + location + "," + additionalDetails);
+                writer.write(description + "," + category + "," + date + "," + time + "," + location + "," +
+                        additionalDetails);
                 writer.write(System.lineSeparator());
                 writer.flush();
             } catch (IOException ex) {
@@ -128,12 +129,14 @@ public class FoundLostItem extends Application {
 
             // Check for a match in the lost items file
             boolean matchFound = false;
+            String foundUserId = null; // Variable to store the userId if a match is found
             try (BufferedReader reader = new BufferedReader(new FileReader(LOST_ITEMS_FILE))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] itemDetails = line.split(",");
                     if (itemDetails[0].equalsIgnoreCase(description) && itemDetails[1].equalsIgnoreCase(category)) {
                         matchFound = true;
+                        foundUserId = itemDetails[itemDetails.length - 1]; // Assuming the userId is at the last index in the "lost_item.txt" file
                         break;
                     }
                 }
@@ -142,16 +145,20 @@ public class FoundLostItem extends Application {
             }
 
             if (matchFound) {
-                // Write a notification to the notification file
-                try (FileWriter writer = new FileWriter(NOTIFICATION_FILE, true)) {
-                    writer.write(userId + ": A match has been found for your lost item!");
-                    writer.write(System.lineSeparator());
-                    writer.flush();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                if (foundUserId != null) {
+                    // Write a notification to the notification file with the found userId
+                    try (FileWriter writer = new FileWriter(NOTIFICATION_FILE, true)) {
+                        writer.write(foundUserId + ": A match has been found for your lost item!");
+                        writer.write(System.lineSeparator());
+                        writer.flush();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
 
-                System.out.println("Match found notification written to file!");
+                    System.out.println("Match found notification written to file!");
+                } else {
+                    System.out.println("No userId found for the matched item!");
+                }
             } else {
                 System.out.println("No match found!");
             }
@@ -159,6 +166,8 @@ public class FoundLostItem extends Application {
             // Close the page
             primaryStage.close();
         });
+
+
 
         // Set the header, form, and footer in the main layout
         mainLayout.setTop(headerLabel);

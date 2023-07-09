@@ -1,0 +1,29 @@
+@startuml
+
+class Login
+
+class Home 
+class Notification 
+class ReportLostItem 
+class ReportFoundItem 
+class Dashboard
+
+Login --> Home
+
+Home "1" *-- "1" Dashboard
+Home "1" *-- "1" ReportLostItem
+Home "1" *-- "1" ReportFoundItem
+Home "1" *-- "1" Notification
+
+Home --> Application
+
+Notification --> Application
+
+ReportLostItem --> Application
+
+ReportFoundItem --> Application
+
+Dashboard --> Application
+
+@enduml
+

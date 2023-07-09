@@ -1,0 +1,130 @@
+@startuml
+
+class User {
+  - userId: String
+  + getUserId(): String
+  + setUserId(userId: String): void
+}
+
+class Registration {
+  + registerUser(user: User): void
+}
+
+class Login {
+  + main(args: String[]): void
+}
+
+class Authentication {
+  + authenticateUser(username: String, password: String): boolean
+}
+
+class Home {
+  + main(args: String[]): void
+}
+
+class HomeStudent {
+  + main(args: String[]): void
+}
+
+class LostAndFoundApp {
+  + main(args: String[]): void
+}
+
+class Notification {
+  - userIdFinal: String
+  - NOTIFICATION_FILE: String
+  + setUserId(userId: String): void
+  + start(primaryStage: Stage): void
+  - createHeader(): HBox
+  - createFooter(): HBox
+  - getNotificationsForUser(userId: String): List<String>
+  - showNoNotificationsAlert(): void
+  - showNotification(title: String, message: String): void
+  - createImageView(): ImageView
+  - createNotificationPane(userId: String, notifications: List<String>): VBox
+  - createSplitPane(imageView: ImageView, notificationPane: VBox): SplitPane
+  - removeNotificationFromUser(userId: String, notification: String): void
+}
+
+class ReportLostItem {
+  - userId: String
+  - LOST_ITEMS_FILE: String
+  - FOUND_ITEMS_FILE: String
+  - NOTIFICATION_FILE: String
+  + setUserId(userId: String): void
+  + start(primaryStage: Stage): void
+  - showAlert(message: String): void
+  - isValidEmail(email: String): boolean
+}
+
+class FoundLostItem {
+  - userId: String
+  - LOST_ITEMS_FILE: String
+  - FOUND_ITEMS_FILE: String
+  - NOTIFICATION_FILE: String
+  + setUserId(userId: String): void
+  + start(primaryStage: Stage): void
+  - showAlert(message: String): void
+  - isValidEmail(email: String): boolean
+}
+
+class Dashboard {
+  - LOST_ITEMS_FILE: String
+  - FOUND_ITEMS_FILE: String
+  - table: TableView<Item>
+  - lostItems: ObservableList<Item>
+  - foundItems: ObservableList<Item>
+  + init(): void
+  + start(stage: Stage): void
+  - loadItemsFromFiles(): void
+  - loadItemsFromFile(filename: String): ObservableList<Item>
+}
+
+class Item {
+  - name: String
+  - description: String
+  - date: LocalDate
+  - location: String
+  - contact: String
+  + getName(): String
+  + getDescription(): String
+  + getDate(): LocalDate
+  + getLocation(): String
+  + getContact(): String
+}
+
+LostAndFoundApp ---> User 
+
+User -- Login
+User -- Registration
+Login -> Authentication
+Registration -> Authentication
+
+Login --> Home
+Login --> HomeStudent
+
+Home --> Notification
+Home --> ReportLostItem
+Home --> FoundLostItem
+Home --> Dashboard
+
+Dashboard --> Item
+
+
+' Authentication --> User
+' Registration --> User
+' Authentication --> Dashboard
+' Registration --> Dashboard
+' Authentication --> LostAndFoundApp
+' Registration --> LostAndFoundApp
+' LostAndFoundApp --> Dashboard
+' Dashboard --> Item
+' Dashboard --> TableView
+' Notification --> Application
+' ReportLostItem --> Application
+' FoundLostItem --> Application
+' Login --> Authentication
+' Home --> Authentication
+' HomeStudent --> Authentication
+
+@enduml

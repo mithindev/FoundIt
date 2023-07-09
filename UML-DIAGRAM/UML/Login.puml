@@ -1,0 +1,49 @@
+@startuml
+
+class Login {
+  - userCredentials: Map<String, String>
+  + init()
+  + start(stage: Stage)
+  + getFileUrl(filePath: String): String
+  + readUserCredentials(): Map<String, String>
+  + authenticateUser(username: String, password: String): boolean
+  + isUsernameValid(username: String): boolean
+  + openAdminHomePage(stage: Stage, userId: String)
+  + openStudentHomePage(stage: Stage, userId: String)
+  + openSignupPage(stage: Stage)
+  + showErrorDialog(message: String)
+  + showSuccessDialog(message: String)
+  + saveUserCredentials()
+  + main(args: String[])
+}
+
+class HeaderLogin {
+  + createHeader(): HBox
+}
+
+class Footer {
+  + createFooter(): HBox
+}
+
+class Home {
+  - userId: String
+  + setUserId(userId: String)
+  + start(stage: Stage)
+}
+
+class HomeStudent {
+  - userId: String
+  + setUserId(userId: String)
+  + start(stage: Stage)
+}
+
+Home --> Application
+Home "1" *-- "1" Stage
+
+HomeStudent --> Application
+HomeStudent "1" *-- "1" Stage
+
+HeaderLogin --> HBox
+Footer --> HBox
+
+@enduml

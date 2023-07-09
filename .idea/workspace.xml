@@ -20,6 +20,13 @@
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/MY RESEARCH/LUAD_Differential_Methylation_All_Table.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UML-DIAGRAM/login.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/found_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/found_item.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lost_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lost_item.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/FoundLostItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/FoundLostItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/ReportLostItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/ReportLostItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_details.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/users.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
@@ -94,7 +101,7 @@
       <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Login">
+  <component name="RunManager" selected="Application.FoundLostItem">
     <configuration name="Dashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.foundit.Dashboard" />
       <module name="FoundIt" />
@@ -108,8 +115,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Header" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Header" />
+    <configuration name="FoundLostItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.FoundLostItem" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -147,8 +154,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Notification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Notification" />
+    <configuration name="ReportLostItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.ReportLostItem" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -162,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FoundLostItem" />
         <item itemvalue="Application.Login" />
+        <item itemvalue="Application.ReportLostItem" />
         <item itemvalue="Application.Dashboard" />
         <item itemvalue="Application.HeaderLogin" />
-        <item itemvalue="Application.Header" />
-        <item itemvalue="Application.Notification" />
       </list>
     </recent_temporary>
   </component>
@@ -215,6 +222,7 @@
       <workItem from="1688897265847" duration="598000" />
       <workItem from="1688905781393" duration="5027000" />
       <workItem from="1688914585736" duration="2423000" />
+      <workItem from="1688920818392" duration="2143000" />
     </task>
     <servers />
   </component>
