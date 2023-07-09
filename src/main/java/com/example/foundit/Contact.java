@@ -31,22 +31,22 @@ public class Contact extends Application {
         root.setHgap(20);
         root.setVgap(20);
         root.setPadding(new Insets(20));
-        Scene scene = new Scene(root, 800, 800);
+        Scene scene = new Scene(root, 800, 700);
 
         // Member 1
-        VBox member1Box = createMemberProfile("John Doe", "Project Manager", "johndoe@example.com", "+1 123-456-7890", "Lorem ipsum.", "https://linkedin.com/johndoe", "https://twitter.com/johndoe", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\logo.jpg");
+        VBox member1Box = createMemberProfile("MITHIN DEV", "Login&signup", "mithindev1@example.com", "+1 123-456-7890", "Lorem ipsum.", "https://www.linkedin.com/in/mithindev/", "https://twitter.com/MithinDev", "C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\1.jpg");
         root.add(member1Box, 0, 0);
 
         // Member 2
-        VBox member2Box = createMemberProfile("Jane Smith", "Developer", "janesmith@example.com", "+1 987-654-3210", "Lorem ipsum", "https://linkedin.com/janesmith", "https://github.com/janesmith", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\logo.jpg");
+        VBox member2Box = createMemberProfile("VIKASH", "Finding Item", "vikash@example.com", "+1 987-654-3210", "Lorem ipsum", "https://linkedin.com/janesmith", "https://github.com/janesmith", "C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\2.jpg");
         root.add(member2Box, 1, 0);
 
         // Member 3
-        VBox member3Box = createMemberProfile("Mark Johnson", "Designer", "markjohnson@example.com", "+1 555-123-4567", "Lorem ipsum ", "https://linkedin.com/markjohnson", "https://github.com/janesmith", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\logo.jpg");
+        VBox member3Box = createMemberProfile("SUCHARAN", "Reporting Item", "sucharan@example.com", "+1 555-123-4567", "Lorem ipsum ", "https://linkedin.com/markjohnson", "https://github.com/janesmith", "C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\3.jpg");
         root.add(member3Box, 0, 1);
 
         // Member 4
-        VBox member4Box = createMemberProfile("Sarah Williams", "Tester", "sarahwilliams@example.com", "+1 777-999-0000", "Lorem ipsum .", "https://linkedin.com/markjohnson", "https://github.com/janesmith", "C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\logo.jpg");
+        VBox member4Box = createMemberProfile("CHARISH", "Landing Pages", "cherish@example.com", "+1 777-999-0000", "Lorem ipsum .", "https://linkedin.com/markjohnson", "https://github.com/janesmith", "C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\4.jpg");
         root.add(member4Box, 1, 1);
 
         primaryStage.setTitle("Contact");

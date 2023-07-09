@@ -30,14 +30,23 @@ public class Contributions extends Application {
         root.setPadding(new Insets(20));
         Scene scene = new Scene(root, 800, 700);
 
-        // String - 1
-        String str1 = "CONTRIBUTIONS:\n 1.abcd\n2.abcd";
+        // Mithin
+        String str1 = "CONTRIBUTIONS:\n Login.java\nContact.java\nContribution.java";
+
+        // Vikash
+        String str2 = "CONTRIBUTIONS:\n FoundLostItem.java\nNotification.java";
+
+        // Sucharan
+        String str3 = "CONTRIBUTIONS:\n ReportLostItem.java\nDashboard.java\nItem.java";
+
+        // Cherish
+        String str4 = "CONTRIBUTIONS:\n Home.java\nHeader.java\nHeaderLogin.java\nFooter.java";
 
         // Create and add flip cards to the grid pane
-        createFlipCard(root, str1, "file:///C:/Users/nmary/OneDrive/Desktop/UN%20ORGANISED/ILLUSTRATIONS/1.jpeg", 0, 0);
-        createFlipCard(root, "Card 2", "file:///C:/Users/nmary/OneDrive/Desktop/UN%20ORGANISED/ILLUSTRATIONS/1.jpeg", 1, 0);
-        createFlipCard(root, "Card 3", "file:///C:/Users/nmary/OneDrive/Desktop/UN%20ORGANISED/ILLUSTRATIONS/1.jpeg", 0, 1);
-        createFlipCard(root, "Card 4", "file:///C:/Users/nmary/OneDrive/Desktop/UN%20ORGANISED/ILLUSTRATIONS/1.jpeg", 1, 1);
+        createFlipCard(root, str1, "C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\1.jpg", 0, 0);
+        createFlipCard(root, str2, "C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\2.jpg", 1, 0);
+        createFlipCard(root, str3, "C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\3.jpg", 0, 1);
+        createFlipCard(root, str4, "C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\4.jpg", 1, 1);
 
         primaryStage.setTitle("Contributions");
         primaryStage.setScene(scene);

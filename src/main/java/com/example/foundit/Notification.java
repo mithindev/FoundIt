@@ -185,10 +185,10 @@ public class Notification extends Application {
     private void removeNotificationFromUser(String userId, String notification) {
         try {
             File inputFile = new File(NOTIFICATION_FILE);
-            File tempFile = new File(NOTIFICATION_FILE + ".tmp");
+//            File tempFile = new File(NOTIFICATION_FILE + ".tmp");
 
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
             String lineToRemove = userId + ": " + notification;
             String currentLine;
@@ -196,17 +196,17 @@ public class Notification extends Application {
             while ((currentLine = reader.readLine()) != null) {
                 String trimmedLine = currentLine.trim();
                 if (!trimmedLine.equals(lineToRemove)) {
-                    writer.write(currentLine + System.lineSeparator());
+//                    writer.write(currentLine + System.lineSeparator());
                 }
             }
 
-            writer.close();
+//            writer.close();
             reader.close();
 
             if (inputFile.delete()) {
-                if (!tempFile.renameTo(inputFile)) {
-                    throw new IOException("Could not rename the temporary file to the original file");
-                }
+//                if (!tempFile.renameTo(inputFile)) {
+//                    throw new IOException("Could not rename the temporary file to the original file");
+//                }
             } else {
                 throw new IOException("Could not delete the original file");
             }
