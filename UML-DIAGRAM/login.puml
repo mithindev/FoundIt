@@ -1,0 +1,146 @@
+@startuml
+
+package com.example.foundit {
+    class Notification {
+        - userIdFinal: String
+        - NOTIFICATION_FILE: String
+        + setUserId(userId: String): void
+        + main(args: String[]): void
+        + start(primaryStage: Stage): void
+        - createHeader(): HBox
+        - createFooter(): HBox
+        - getNotificationsForUser(userId: String): List<String>
+        - showNoNotificationsAlert(): void
+        - showNotification(title: String, message: String): void
+        - createImageView(): ImageView
+        - createNotificationPane(userId: String, notifications: List<String>): VBox
+        - createSplitPane(imageView: ImageView, notificationPane: VBox): SplitPane
+        - removeNotificationFromUser(userId: String, notification: String): void
+    }
+}
+
+Application <|-- Notification
+Application : + primaryStage: Stage
+Notification : + userIdFinal: String
+Notification : + NOTIFICATION_FILE: String
+Notification --> ImageView
+Notification --> VBox
+Notification --> SplitPane
+Notification --> Alert
+Notification --> Label
+Notification --> Button
+Notification --> BufferedReader
+Notification --> FileReader
+Notification --> BufferedWriter
+Notification --> FileWriter
+Notification --> Image
+Notification --> HBox
+Notification --> BorderPane
+Notification --> Scene
+Notification --> Stage
+Notification --> File
+Notification --> IOException
+Notification --> ArrayList
+
+class Scene {
+    + setRoot(root: Parent): void
+    + setStyle(style: String): void
+    + constructor(root: Parent, width: double, height: double)
+}
+
+class Stage {
+    + getIcons(): List<Image>
+    + setTitle(title: String): void
+    + setScene(scene: Scene): void
+    + show(): void
+}
+
+class BufferedReader {
+    + readLine(): String
+    + close(): void
+}
+
+class FileReader {
+    + constructor(file: File)
+}
+
+class BufferedWriter {
+    + write(str: String): void
+    + close(): void
+}
+
+class FileWriter {
+    + constructor(file: File)
+}
+
+class Insets {
+    + constructor(top: double, right: double, bottom: double, left: double)
+}
+
+class Pos {
+    + static CENTER: Pos
+    + constructor(name: String)
+}
+
+class Color {
+    + static WHITE: Color
+    + static GRAY: Color
+    + constructor(name: String)
+}
+
+class Border {
+    + constructor(stroke: Stroke)
+}
+
+class BorderStroke {
+    + constructor(color: Color, style: StrokeStyle, radii: CornerRadii, widths: BorderWidths)
+}
+
+class StrokeStyle {
+    + SOLID: StrokeStyle
+    + constructor(name: String)
+}
+
+class CornerRadii {
+    + EMPTY: CornerRadii
+    + constructor()
+}
+
+class BorderWidths {
+    + constructor(width: double)
+}
+
+class Orientation {
+    + HORIZONTAL: Orientation
+    + constructor(name: String)
+}
+
+class Node {
+}
+
+class Parent {
+}
+
+class ActionEvent {
+}
+
+class List<T> {
+    + add(element: T): boolean
+    + remove(element: T): boolean
+}
+
+
+class ArrayList<E> {
+    + add(element: E): boolean
+    + isEmpty(): boolean
+    + join(delimiter: String): String
+}
+
+Application <|-- Stage
+Stage <|-- Scene
+Scene <|-- Parent
+Parent <|-- BorderPane
+Node <|-- Label
+Node <|-- Button
+
+@enduml

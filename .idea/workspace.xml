@@ -20,13 +20,6 @@
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" beforeDir="false" afterPath="$PROJECT_DIR$/../DSA-COLLEGE/LEET-CODE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DSA-COLLEGE/MY RESEARCH/LUAD_Differential_Methylation_All_Table.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/found_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/found_item.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lost_item.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lost_item.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notification.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Contact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Contributions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Contributions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/foundit/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/foundit/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/users.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MARIO-GAME-ENGINE/MarioGameEngine/.idea/misc.xml" beforeDir="false" />
@@ -101,35 +94,35 @@
       <recent name="C:\Users\nmary\OneDrive\Desktop\FoundIt\src\main\java\com\example\foundit" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Notification">
-    <configuration name="Contact" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Contact" />
-      <module name="FoundIt" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.foundit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Contributions" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Contributions" />
-      <module name="FoundIt" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.foundit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Login">
     <configuration name="Dashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.foundit.Dashboard" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Header" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.Header" />
+      <module name="FoundIt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.foundit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HeaderLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.foundit.HeaderLogin" />
       <module name="FoundIt" />
       <extension name="coverage">
         <pattern>
@@ -169,11 +162,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Notification" />
         <item itemvalue="Application.Login" />
-        <item itemvalue="Application.Contact" />
-        <item itemvalue="Application.Contributions" />
         <item itemvalue="Application.Dashboard" />
+        <item itemvalue="Application.HeaderLogin" />
+        <item itemvalue="Application.Header" />
+        <item itemvalue="Application.Notification" />
       </list>
     </recent_temporary>
   </component>
@@ -221,6 +214,7 @@
       <workItem from="1688837672269" duration="14000" />
       <workItem from="1688897265847" duration="598000" />
       <workItem from="1688905781393" duration="5027000" />
+      <workItem from="1688914585736" duration="2423000" />
     </task>
     <servers />
   </component>
