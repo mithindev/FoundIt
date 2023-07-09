@@ -3,3 +3,4 @@ qwer.stu.edu:incorreCt
 charan.admin.edu:incorreCt
 charish.admin.edu:incorreCt
 giri.stu.edu:incorreCt
+charish.stu.edu:incorreCt
