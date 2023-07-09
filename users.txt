@@ -1,2 +1,3 @@
 mithin.stu.edu:incorreCt
+charan.admin.edu:incorreCt
 giri.stu.edu:incorreCt

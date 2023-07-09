@@ -125,7 +125,7 @@ public class Login extends Application {
         root.setCenter(loginContainer);
         root.setBottom(footer);
 
-        stage.setTitle("Amrita Integrated Management System");
+        stage.setTitle("FoundIt: We find it for you!");
         stage.setWidth(1080);
         stage.setHeight(720);
         stage.setScene(scene);

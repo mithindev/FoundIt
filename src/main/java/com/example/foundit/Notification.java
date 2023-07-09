@@ -134,7 +134,7 @@ public class Notification extends Application {
 
     private ImageView createImageView() {
         ImageView imageView = null;
-        Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+        Image image = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\notification.jpg");
         imageView = new ImageView(image);
         imageView.setFitWidth(400); // Adjust the width as desired
         imageView.setFitHeight(300); // Adjust the height as desired
@@ -149,7 +149,7 @@ public class Notification extends Application {
         notificationPane.setMaxWidth(Double.MAX_VALUE); // Expand to fill available width
 
         // Create an icon image
-        Image iconImage = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+        Image iconImage = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\notification.jpg");
         ImageView iconImageView = new ImageView(iconImage);
         iconImageView.setFitWidth(20);
         iconImageView.setFitHeight(20);

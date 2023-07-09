@@ -131,6 +131,8 @@ public class Home extends Application {
     }
 
     private void showDashboard() {
+        Dashboard dashboard = new Dashboard();
+        dashboard.start(new Stage());
         System.out.println("Showing Dashboard display");
     }
 

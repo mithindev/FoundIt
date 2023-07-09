@@ -43,7 +43,7 @@ public class Header extends Application {
         logoBox.setAlignment(Pos.CENTER_LEFT);
 
         // Adding the logo to the header
-        ImageView logoImage = new ImageView(new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg"));
+        ImageView logoImage = new ImageView(new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\12.jpg"));
         logoImage.setFitHeight(40);
         logoImage.setPreserveRatio(true);
         logoBox.getChildren().add(logoImage);

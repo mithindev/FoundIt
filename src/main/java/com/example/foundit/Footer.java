@@ -50,9 +50,10 @@ public class Footer extends Application {
         hyperlink.setGraphic(linkLabel);
         TextFlow linkFlow = new TextFlow(hyperlink);
 
-        Image icon1 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-        Image icon2 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
-        Image icon3 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\UN ORGANISED\\ILLUSTRATIONS\\1.jpeg");
+        Image icon1 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\1.jpg");
+        Image icon2 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\2.jpg");
+        Image icon3 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\3.jpg");
+        Image icon4 = new Image("C:\\Users\\nmary\\OneDrive\\Desktop\\FoundIt\\ASSETS\\avatar\\4.jpg");
         ImageView icon1View = new ImageView(icon1);
         icon1View.setFitWidth(20);
         icon1View.setFitHeight(20);
@@ -62,8 +63,11 @@ public class Footer extends Application {
         ImageView icon3View = new ImageView(icon3);
         icon3View.setFitWidth(20);
         icon3View.setFitHeight(20);
+        ImageView icon4View = new ImageView(icon4);
+        icon4View.setFitWidth(20);
+        icon4View.setFitHeight(20);
 
-        footer.getChildren().addAll(icon1View, icon2View, icon3View, separator, linkFlow, versionLabel, designedByLabel, copyrightLabel);
+        footer.getChildren().addAll(icon1View, icon2View, icon3View, icon4View, separator, linkFlow, versionLabel, designedByLabel, copyrightLabel);
 
         footer.setStyle("-fx-background-color: #333333;");
         footer.setPadding(new javafx.geometry.Insets(10, 20, 10, 20));
