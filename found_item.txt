@@ -1,1 +1,2 @@
-abcd,Electronics,2023-07-14,12:12,sswswsws,wswswsws
+abcd,Electronics,2023-07-13,10:10,asasasas,asasasasasasasas
+abcd,Electronics,2023-07-08,10:10,abcd,abcd

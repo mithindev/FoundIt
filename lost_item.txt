@@ -1,2 +1,3 @@
-abcd,Electronics,2023-07-08,10:10,swsded,deded,1234567890,infrifn@gmail.com,frfrf,mithin.stu.edu
-
+abcd,Electronics,2023-07-15,10:10,asasasas,asasasas,1234567890,asasasas@gmail.com,asasasas,mithin.stu.edu
+abcd,Electronics,2023-06-30,4454545454,asasasas,asasasas,1234567890,asasasas@gmail.com,asasasas,null
+abcd,Electronics,2023-07-06,10:10,asasasas,ddeded,1234567890,eijdeind@gmail.com,edededed,mithin.stu.edu

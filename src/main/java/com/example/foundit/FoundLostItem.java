@@ -167,8 +167,6 @@ public class FoundLostItem extends Application {
             primaryStage.close();
         });
 
-
-
         // Set the header, form, and footer in the main layout
         mainLayout.setTop(headerLabel);
         mainLayout.setCenter(formGrid);
